@@ -1,0 +1,26 @@
+{
+  "name": "coelablego-server",
+  "version": "1.0.0",
+  "description": "This is the repository for the server part of the Co-Elab project of an automatic robot used to sort Lego pieces.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeraldGallet/coelablego-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeraldGallet/coelablego-server/issues"
+  },
+  "homepage": "https://github.com/GeraldGallet/coelablego-server#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "colors": "^1.3.2",
+    "express": "^4.16.4",
+    "windows-build-tools": "^5.0.0"
+  }
+}
