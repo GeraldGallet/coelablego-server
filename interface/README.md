@@ -26,8 +26,6 @@ You can run the server by using the command :
 ```
 $ python server.py
 ```
-
-Here are the endpoints of the API:<br/>
 | route | request type | utility | needed |
 | :------------- | :------------- | :------------- | :------------- |
 | /piece | GET | Get a list of all pieces | nothing |
