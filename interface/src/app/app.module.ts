@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { SharedModule } from './shared/shared.module';
 import { HomepageModule } from './homepage/homepage.module';
+import { SearchpageModule } from './searchpage/searchpage.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomepageModule } from './homepage/homepage.module';
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
-    HomepageModule
+    HomepageModule,
+    SearchpageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
