@@ -3,14 +3,22 @@ from flask_cors import CORS, cross_origin
 from flask_restful import Resource, Api
 from json import dumps
 from flask_jsonpify import jsonify
+from pymongo import MongoClient
 
+# Our very own imports
+from api.Piece import *
+from api.Bag import *
 
 app = Flask(__name__)
 api = Api(app)
 
-
 CORS(app)
 
+api.add_resource(Piece, '/piece', methods=['GET', 'POST'], endpoint="pieces")
+api.add_resource(PieceByShape, '/piece/shape/<shape>', endpoint="piece")
+
+api.add_resource(Bag, '/bag', methods=['GET', 'POST'], endpoint="bags")
+api.add_resource(BagByName, '/bag/name/<name>', endpoint="bag")
 
 @app.route("/")
 def hello():
@@ -35,3 +43,5 @@ api.add_resource(Employees_Name, '/employees/<employee_id>')
 
 if __name__ == '__main__':
     app.run(port=5002)
+    #db_client = DatabaseInterface()
+    #db_client.initiate()
