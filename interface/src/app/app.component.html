@@ -5,13 +5,20 @@
   </h1>
 </div>
 
-<!-- <nav>
-  <button (click)="sayHi()">Say Hi</button>
-  <span>Server data: {{serverData | json}}</span>
-</nav> -->
+<body ng-app>
+  <nav class="{{active}}" ng-click="$event.preventDefault()">
+    <a class="home" routerLink="home" routerLinkActive="active">Home</a>
+    <a class="home" routerLink="home" routerLinkActive="active">Selection Tri</a>
+    <a class="home" routerLink="home" routerLinkActive="active">Database</a>
+    <a class="home" routerLink="home" routerLinkActive="active">Parametre</a>
+  </nav>
 
-<router-outlet></router-outlet>
+  <p ng-show="active">You chose <b>{{active}}</b></p>
 
-<div style="text-align:center">
-  <img width="100" alt="Yncrea Logo" src="{{ logo }}">
-</div>
+  <router-outlet></router-outlet>
+
+  <div style="text-align:center">
+    <img width="100" alt="Yncrea Logo" src="{{ logo }}">
+  </div>
+
+</body>

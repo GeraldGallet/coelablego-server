@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { SearchpageModule } from './searchpage/searchpage.module';
+import { NotFoundErrorModule } from './not-found-error/not-found-error.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SearchpageModule } from './searchpage/searchpage.module';
     BrowserAnimationsModule,
     SharedModule,
     HomepageModule,
-    SearchpageModule
+    SearchpageModule,
+    NotFoundErrorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
