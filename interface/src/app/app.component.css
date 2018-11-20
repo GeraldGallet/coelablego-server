@@ -20,12 +20,12 @@ body{
 	text-align:center;
 }
 
-a, a:visited {
+button, button:visited {
 	outline:none;
 	color:#389dc1;
 }
 
-a:hover{
+button:hover{
 	text-decoration:none;
 }
 
@@ -47,7 +47,7 @@ nav{
 	border-radius:2px;
 }
 
-nav a{
+nav button{
 	display:inline-block;
 	padding: 18px 30px;
 	color:#fff !important;
@@ -61,35 +61,4 @@ nav a{
 	-webkit-transition:background-color 0.25s;
 	-moz-transition:background-color 0.25s;
 	transition:background-color 0.25s;
-}
-
-nav a:first-child{
-	border-radius:2px 0 0 2px;
-}
-
-nav a:last-child{
-	border-radius:0 2px 2px 0;
-}
-
-nav.home .home,
-nav.team.team,
-nav.about .about,
-nav.contact .contact{
-	background-color:#5867E3;
-}
-
-p{
-	font-s
-	color:#7d9098;
-}
-
-p b{
-	color:#ffffff;
-	display:inline-block;
-	padding:5px 10px;
-	background-color:#DC64C6;
-	border-radius:2px;ize:22px;
-	font-weight:bold;
-	text-transform:uppercase;
-	font-size:18px;
 }
