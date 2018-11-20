@@ -5,17 +5,11 @@
   </h1>
 </div>
 
-<body ng-app>
-  <nav class="{{active}}" ng-click="$event.preventDefault()">
-    <a class="home" routerLink="home" routerLinkActive="active">Home</a>
-    <a class="home" routerLink="home" routerLinkActive="active">Selection Tri</a>
-    <a class="home" routerLink="home" routerLinkActive="active">Database</a>
-    <a class="home" routerLink="home" routerLinkActive="active">Parametre</a>
-  </nav>
+<body>
 
-  <nav class="{{active}}" ng-click="$event.preventDefault()">
+  <nav>
     <button mat-button routerLink="home" routerLinkActive="active">Home</button>
-    <button mat-button routerLink="home" routerLinkActive="active">Selection tri</button>
+    <button mat-button routerLink="search" routerLinkActive="active">Selection tri</button>
     <button mat-button routerLink="home" routerLinkActive="active">Database</button>
     <button mat-button routerLink="home" routerLinkActive="active">Parametre</button>
   </nav>
