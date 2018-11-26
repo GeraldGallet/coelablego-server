@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
-import { SortService } from '../shared/services/sort/sort.service'
+import { SortService } from 'src/app/shared/services';
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -9,19 +10,20 @@ import { SortService } from '../shared/services/sort/sort.service'
 })
 export class HomepageComponent implements OnInit {
 
-  lego_picture = environment.assets.lego_picture;
-  selected_sort;
+  legoPicture = environment.assets.lego_picture;
+  selectedSort: string;
+
   constructor(private sortService: SortService) { }
 
   ngOnInit() {
-    this.selected_sort = this.sortService.selected_sort;
+    this.selectedSort = this.sortService.getSelectedSort();
   }
 
   demoSort(){
-    if(this.selected_sort === 'none') {
-      this.selected_sort = 'Test';
+    if(this.selectedSort === 'none') {
+      this.selectedSort = 'Test';
     } else {
-      this.selected_sort = 'none';
+      this.selectedSort = 'none';
     }
   }
 }

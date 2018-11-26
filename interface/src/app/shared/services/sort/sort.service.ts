@@ -9,8 +9,16 @@ import { environment } from 'src/environments/environment';
 })
 export class SortService {
 
-  private selected_sort = "none"; //Will be used to link sort select page to homepage
+  private selectedSort = "none"; //Will be used to link sort select page to homepage
 
   constructor() { }
+
+  getSelectedSort(): string {
+	return this.selectedSort;
+  }
+
+  setSelectedSort(sort: string) {
+	this.selectedSort = sort;
+  }
 
 }

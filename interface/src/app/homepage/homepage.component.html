@@ -1,15 +1,15 @@
 <div id="wrapper">
     <div id="icon">
       <button mat-flat-button class="mdc-button">
-        <i *ngIf="selected_sort!='none'" class="material-icons green-icon">check_circle_outline</i>
-        <i *ngIf="selected_sort=='none'" class="material-icons red-icon">cancel_presentation</i>
+        <i *ngIf="selectedSort!='none'" class="material-icons green-icon">check_circle_outline</i>
+        <i *ngIf="selectedSort=='none'" class="material-icons red-icon">cancel_presentation</i>
       </button>
     </div>
     <div id="lego-picture">
-      <img src="{{ lego_picture }}" alt="Lego Picture" width="300">
+      <img src="{{ legoPicture }}" alt="Lego Picture" width="300">
     </div>
     <div id="div-under-button">
-      <p id="text-under-button"> Tri choisi : {{ selected_sort }}</p>
+      <p id="text-under-button"> Tri choisi : {{ selectedSort }}</p>
     </div>
 </div>
 <div id="div-test">
