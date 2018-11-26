@@ -1,3 +1,7 @@
-<p>
-  searchpage works!
-</p>
+<div>
+	<input [(ngModel)]="searchText" placeholder="Paquet à rechercher">
+</div>
+
+<div *ngFor="let packet of (packets | filter: searchText )">
+	{{ packet }}
+</div>
