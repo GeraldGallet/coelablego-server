@@ -3,5 +3,13 @@
 </div>
 
 <div *ngFor="let packet of (packets | filter: searchText )">
-	{{ packet }}
+	<mat-button-toggle (click)="selectPacket(packet)">
+		{{ packet }}
+	</mat-button-toggle>
+</div>
+
+<div>
+	<button mat-button (click)="goToSorting()">
+		Choisir ce tri
+	</button>
 </div>

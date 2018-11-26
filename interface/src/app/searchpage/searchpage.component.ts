@@ -29,7 +29,6 @@ export class SearchpageComponent implements OnInit {
   }
 
   selectPacket(packet: string) {
-	console.log(packet);
 	this.sortService.setSelectedSort(packet);
   }
 
