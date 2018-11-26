@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   assets: {
-	yncreaLogo: "assets/yncrea.jpeg"
+	yncreaLogo: "assets/yncrea.jpeg",
+  lego_picture: "assets/lego_chicken.jpg"
   },
   apiUrl: "http://127.0.0.1:5002/"
 };

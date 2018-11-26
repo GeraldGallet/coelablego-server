@@ -29,10 +29,6 @@ button:hover{
 	text-decoration:none;
 }
 
-section, footer, header, aside, nav{
-	display: block;
-}
-
 
 /*-------------------------
 	The menu

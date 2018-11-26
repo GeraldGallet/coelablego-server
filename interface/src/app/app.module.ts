@@ -11,6 +11,8 @@ import { HomepageModule } from './homepage/homepage.module';
 import { SearchpageModule } from './searchpage/searchpage.module';
 import { NotFoundErrorModule } from './not-found-error/not-found-error.module';
 
+import { SortService } from './shared/services/sort/sort.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,9 @@ import { NotFoundErrorModule } from './not-found-error/not-found-error.module';
     SearchpageModule,
     NotFoundErrorModule
   ],
-  providers: [],
+  providers: [
+    SortService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
