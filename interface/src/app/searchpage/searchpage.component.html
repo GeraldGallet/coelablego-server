@@ -2,10 +2,12 @@
 	<input [(ngModel)]="searchText" placeholder="Paquet à rechercher">
 </div>
 
-<div *ngFor="let packet of (packets | filter: searchText )">
-	<mat-button-toggle (click)="selectPacket(packet)">
-		{{ packet }}
-	</mat-button-toggle>
+<div>
+	<mat-button-toggle-group vertical>
+		<mat-button-toggle *ngFor="let packet of(packets | filter:searchText)" (click)="selectPacket(packet)">
+			{{ packet }}
+		</mat-button-toggle>
+	</mat-button-toggle-group>
 </div>
 
 <div>
