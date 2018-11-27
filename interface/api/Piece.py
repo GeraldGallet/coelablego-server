@@ -6,6 +6,7 @@ from flask import request
 
 import json
 from . import database
+import pprint
 
 db_interface = database.DatabaseInterface()
 collection = db_interface.db.piece
@@ -14,7 +15,7 @@ class Piece(Resource):
     def get(self):
         res_query = collection.find()
 
-        if(len(res_query) == 0):
+        if(res_query.count() == 0):
             return jsonify({'status': 404, 'message': "No Piece object found in database"});
 
         res = []
@@ -22,7 +23,7 @@ class Piece(Resource):
             item['_id'] = str(item['_id'])
             res.append(item)
 
-        return jsonify({'status': 200, 'message': str(len(res)) + "Piece objects were found", 'data': res, 'rowCount': len(res)})
+        return jsonify({'status': 200, 'message': str(len(res)) + " Piece objects were found", 'data': res, 'rowCount': len(res)})
 
     def post(self):
         new = {}
@@ -39,7 +40,7 @@ class PieceByShape(Resource):
     def get(self, shape):
         res_query = collection.find({"shape": shape})
 
-        if(len(res_query) == 0):
+        if(res_query.count() == 0):
             return jsonify({'status': 404, 'message': "No Piece object has shape " + str(shape)});
 
         res = []
