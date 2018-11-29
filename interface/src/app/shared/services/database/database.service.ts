@@ -23,8 +23,28 @@ export class DatabaseService {
 		}));
   }
 
-  getAllPackets(): Observable<Bag[]> {
+  getPieceByShape(shape: string): Observable<Piece[]> {
+	return this.httpClient.get<ServerResponse>(environment.apiUrl + "shape/" + shape)
+		.pipe(map((res: ServerResponse) => {
+			return new ServerResponse().deserialise(res).data
+				.map((piece: Piece) => {
+					return new Piece().deserialise(piece);
+				});
+		}));
+  }
+
+  getAllBags(): Observable<Bag[]> {
 	return this.httpClient.get<ServerResponse>(environment.apiUrl + "bag")
+		.pipe(map((res: ServerResponse) => {
+			return new ServerResponse().deserialise(res).data
+				.map((bag: Bag) => {
+					return new Bag().deserialise(bag);
+				});
+		}));
+  }
+
+  getBagByName(name: string): Observable<Bag[]> {
+	return this.httpClient.get<ServerResponse>(environment.apiUrl + "name/" + name)
 		.pipe(map((res: ServerResponse) => {
 			return new ServerResponse().deserialise(res).data
 				.map((bag: Bag) => {
