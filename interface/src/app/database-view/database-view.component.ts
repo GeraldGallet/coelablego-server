@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { SimulateDataService } from '../shared/services/simulatedata/simulateData.service';
-
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-database-view',
