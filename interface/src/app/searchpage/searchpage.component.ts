@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes, Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 import { HomepageComponent } from 'src/app/homepage/homepage.component';
 import { SortService } from 'src/app/shared/services';
-import { FilterPipe } from 'src/app/shared/pipes/filter/filter.pipe';
+import { DatabaseService } from 'src/app/shared/services';
+import { BagFilterPipe } from 'src/app/shared/pipes';
+import { Piece, Bag } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-searchpage',
@@ -13,27 +16,34 @@ import { FilterPipe } from 'src/app/shared/pipes/filter/filter.pipe';
 })
 export class SearchpageComponent implements OnInit {
 
-  myControl = new FormControl();
+  bags$: Observable<Bag[]>;
+  pieces$: Observable<Piece[]>;
 
-  packets = ['Item 1', 'Item 2', 'Item 3', 'Packet 1', 'Packet 2', 'Packet 3'];
-
-  search: string;
-
-  constructor(private router: Router, private sortService: SortService, private filterPipe: FilterPipe) { }
+  constructor(
+		private router: Router,
+		private sortService: SortService,
+		private dbService: DatabaseService,
+		private bagFilterPipe: BagFilterPipe) { }
 
   ngOnInit() {
+	this.fetchBags();
+	this.fetchPieces();
   }
 
-  searchPacket() {
-	console.log("Button clicked");
-  }
-
-  selectPacket(packet: string) {
-	this.sortService.setSelectedSort(packet);
+  selectBag(bag: Bag) {
+	this.sortService.setSelectedSort(bag);
   }
 
   goToSorting() {
 	this.router.navigate(['/home']);
+  }
+
+  fetchBags() {
+	this.bags$ = this.dbService.getAllBags();
+  }
+
+  fetchPieces() {
+	this.pieces$ = this.dbService.getAllPieces();
   }
 
 }

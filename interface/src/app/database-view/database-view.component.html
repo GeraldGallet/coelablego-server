@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <h2>My {{ nameShowed }}</h2>
+    <mat-button-toggle-group horizontal>
+      <mat-button-toggle value="Pieces" (click)="affectName('Pieces')">Pieces</mat-button-toggle>
+      <mat-button-toggle value="Bags" (click)="affectName('Bags')">Bags</mat-button-toggle>
+    </mat-button-toggle-group>
+    <ul class="list-group">
+        <app-database-element *ngFor="let i of list; let j = index"
+                              [type]="type"
+                              [index]="j"
+                              [id]="i.id"
+                              [name]="i.name"
+                              [pieces]="i.pieces"
+                              [color]="i.color"
+                              [shape]="i.shape"
+                              [length]="i.length"
+                              [height]="i.height"
+                              [width]="i.width"
+                              [diameter]="i.diameter"
+                              ></app-database-element>
+    </ul>
+  </div>
+</div>

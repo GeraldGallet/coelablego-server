@@ -1,15 +1,17 @@
 <div>
-	<input [(ngModel)]="searchText" placeholder="Paquet à rechercher">
+	<input [(ngModel)]="searchText" placeholder="Sachet à rechercher">
 </div>
 
-<div *ngFor="let packet of (packets | filter: searchText )">
-	<mat-button-toggle (click)="selectPacket(packet)">
-		{{ packet }}
-	</mat-button-toggle>
+<div>
+	<mat-button-toggle-group vertical>
+		<mat-button-toggle *ngFor="let bag of (bags$ | async | bagFilter:searchText)" (click)="selectBag(bag)">
+			{{ bag.name }}
+		</mat-button-toggle>
+	</mat-button-toggle-group>
 </div>
 
 <div>
 	<button mat-button (click)="goToSorting()">
-		Choisir ce tri
+		Choisir ce sachet
 	</button>
 </div>

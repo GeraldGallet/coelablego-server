@@ -4,19 +4,25 @@ import { CommonModule } from '@angular/common';
 import { DatabaseService } from './services';
 import { SortService } from './services';
 import { FilterPipe } from './pipes';
+import { BagFilterPipe } from './pipes/bag-filter/bag-filter.pipe';
 
 @NgModule({
-  declarations: [FilterPipe],
+  declarations: [
+	FilterPipe,
+	BagFilterPipe
+  ],
   imports: [
     CommonModule
   ],
   providers: [
 	DatabaseService,
 	SortService,
-	FilterPipe
+	FilterPipe,
+	BagFilterPipe
   ],
   exports: [
-	FilterPipe
+	FilterPipe,
+	BagFilterPipe
   ]
 })
 export class SharedModule { }
