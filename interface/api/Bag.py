@@ -25,7 +25,7 @@ class Bag(Resource):
                 item['pieces'][i] = str(item['pieces'][i])
             res.append(item)
 
-        return jsonify({'status': 200, 'message': str(len(res)) + "Bag objects were found", 'data': res, 'rowCount': len(res)})
+        return jsonify({'status': 200, 'message': str(len(res)) + " Bag objects were found", 'data': res, 'rowCount': len(res)})
 
     def post(self):
         new = {}
@@ -56,4 +56,4 @@ class BagByName(Resource):
                 item['pieces'][i] = str(item['pieces'][i])
             res.append(item)
 
-        return jsonify({'status': 200, 'message': str(len(res)) + "Bag object was found", 'data': res})
+        return jsonify({'status': 200, 'message': "Bag object was found", 'data': res})

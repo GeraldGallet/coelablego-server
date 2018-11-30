@@ -15,7 +15,8 @@ api = Api(app)
 CORS(app)
 
 api.add_resource(Piece, '/piece', methods=['GET', 'POST'], endpoint="pieces")
-api.add_resource(PieceByShape, '/piece/shape/<shape>', endpoint="piece")
+api.add_resource(PieceByShape, '/piece/shape/<shape>', endpoint="piecebyshape")
+api.add_resource(PieceById, '/piece/<_id>', endpoint="piecebyid")
 
 api.add_resource(Bag, '/bag', methods=['GET', 'POST'], endpoint="bags")
 api.add_resource(BagByName, '/bag/name/<name>', endpoint="bag")

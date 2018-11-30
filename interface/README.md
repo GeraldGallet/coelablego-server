@@ -31,6 +31,7 @@ $ python server.py
 | /piece | GET | Get a list of all pieces | nothing |
 | /piece | POST | Insert a new piece in db | Any characteristic needed |
 | /piece/shape/:shape | GET | Get a list of all pieces filtered by shape | nothing |
+| /piece/:_id | GET | Get a piece by its id | nothing |
 | /bag | GET | Get a list of all bags | nothing |
 | /bag | POST | Insert a new bag in db | name and Any characteristic needed |
 | /bag/name/:name | GET | Get a bag by its name | nothing |
