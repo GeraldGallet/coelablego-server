@@ -11,6 +11,8 @@ import { HomepageModule } from './homepage/homepage.module';
 import { SearchpageModule } from './searchpage/searchpage.module';
 import { NotFoundErrorModule } from './not-found-error/not-found-error.module';
 import { DatabaseViewModule } from './database-view/database-view.module';
+import { DatabaseElementModule } from './database-element/database-element.module';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { DatabaseViewModule } from './database-view/database-view.module';
     HomepageModule,
     SearchpageModule,
     NotFoundErrorModule,
-    DatabaseViewModule
+    DatabaseViewModule,
+    DatabaseElementModule
   ],
   providers: [],
   bootstrap: [AppComponent]
