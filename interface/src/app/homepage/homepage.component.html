@@ -1,22 +1,14 @@
 <div id="wrapper">
     <div id="icon">
-      <button mat-flat-button class="mdc-button">
-        <i *ngIf="selectedSort.name!='none'" class="material-icons green-icon">check_circle_outline</i>
-        <i *ngIf="selectedSort.name=='none'" class="material-icons red-icon">cancel_presentation</i>
-		<!-- <img src="{{ legoPicture }}" alt="Lego Picture" width="300"> -->
-		</button>
+        <mat-icon [inline]="true" *ngIf="selectedSort.name!='Aucun'" class="material-icons green-icon">check_circle_outline</mat-icon>
+        <mat-icon [inline]="true" *ngIf="selectedSort.name=='Aucun'" class="material-icons red-icon">cancel_presentation</mat-icon>
     </div>
     <div id="lego-picture">
       <img src="{{ legoPicture }}" alt="Lego Picture" width="300">
     </div>
     <div id="div-under-button">
       <p id="text-under-button"> Tri choisi : {{ selectedSort.name }}</p>
+      <button mat-raised-button class="fonctional-button" color="primary">Marche</button>
+      <button mat-raised-button class="fonctional-button" color="warn">Arret</button>
     </div>
 </div>
-<!-- <div id="div-test">
-  <button class="btn btn-success"
-          (click)="demoSort()">Bouton Test</button>
-</div>
-<button mat-flat-button color="primary">
-    Hello
-</button> -->

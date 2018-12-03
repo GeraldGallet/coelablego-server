@@ -7,17 +7,20 @@
 }
 #icon {
   /* border: 1px solid green; */
+  width: 45%;
   display: inline-block;
   float:left;
-  width: 45%;
-  padding-top: 10%;
+  font-size: 96px;
+  padding-left: 5%;
+  padding-top: 2%;
 }
 #lego-picture {
   /* border: 1px solid red; */
+  width: 45%;
   vertical-align: top;
+  padding-right: 3%;
   display: inline-block;
   float:right;
-  width: 45%;
 }
 
 #material-icons{
@@ -25,28 +28,23 @@
   margin-right: auto;
 }
 
-i.green-icon {
-    color: green;
-    font-size: 100px;
+mat-icon.green-icon {
+  color: green;
+  font-size: 120px;
 }
-i.red-icon {
-    color: red;
-    font-size: 100px;
+mat-icon.red-icon {
+  color: red;
+  font-size: 120px;
 }
 
 #div-under-button {
   /* border: 1px solid red; */
   float: left;
-  padding-left: 13%;
+  padding-left: 15%;
+  padding-bottom: 15%;
 }
 
-#mdc-button{
-
-}
-p.text-under-button{
-
-}
-
-button{
+/* Button */
+button.fonctional-button{
   margin-right: 8px;
 }
