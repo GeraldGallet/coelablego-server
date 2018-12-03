@@ -11,7 +11,7 @@ import { DatabaseService } from './shared/services';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Lego Sorter';
+  title = environment.appName;
   logo = environment.assets.yncreaLogo;
 
   serverData: JSON;

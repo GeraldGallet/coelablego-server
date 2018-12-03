@@ -16,7 +16,7 @@ export class SortService {
   getSelectedSort(): Bag {
 	return this.selectedSort || new Bag().deserialise({
 		id: "1",
-		name: "Sac Test",
+		name: "Aucun",
 		pieces: []
 	});
   }

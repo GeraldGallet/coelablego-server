@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  appName: "LegoSorter",
   assets: {
 	yncreaLogo: "assets/yncrea.jpeg",
   lego_picture: "assets/lego_chicken.jpg"
