@@ -1,0 +1,20 @@
+<mat-tab-group>
+	<mat-tab label="Sachets">
+		<ul>
+			<app-database-element-bag *ngFor="let b of (bags$ | async)"
+				[id]="b.id"
+				[name]="b.name"
+				[pieces]="b.pieces"
+				[imgUrl]="b.imgUrl"></app-database-element-bag>
+		</ul>
+	</mat-tab>
+	<mat-tab label="Pièces">
+		<ul>
+			<app-database-element-piece *ngFor="let p of (pieces$ | async)"
+				[id]="p.id"
+				[color]="p.color"
+				[shape]="p.shape"
+				[imgUrl]="p.imgUrl"></app-database-element-piece>
+		</ul>
+	</mat-tab>
+</mat-tab-group>

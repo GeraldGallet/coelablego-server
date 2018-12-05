@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DatabaseElementComponent } from './database-element.component';
+import { DatabaseElementBagComponent } from './database-element-bag.component';
 
-describe('DatabaseElementComponent', () => {
-  let component: DatabaseElementComponent;
-  let fixture: ComponentFixture<DatabaseElementComponent>;
+describe('DatabaseElementBagComponent', () => {
+  let component: DatabaseElementBagComponent;
+  let fixture: ComponentFixture<DatabaseElementBagComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DatabaseElementComponent ]
+      declarations: [ DatabaseElementBagComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DatabaseElementComponent);
+    fixture = TestBed.createComponent(DatabaseElementBagComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

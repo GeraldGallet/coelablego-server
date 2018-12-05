@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { NotFoundErrorComponent } from './not-found-error/not-found-error.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SearchpageComponent } from './searchpage/searchpage.component';
-import { DatabaseViewComponent } from './database-view/database-view.component';
+//import { DatabaseViewComponent } from './database-view/database-view.component';
+import { DatabaseViewComponent } from './database/database-view/database-view.component';
 
 const routes: Routes = [
   { path: 'home', component: HomepageComponent },
