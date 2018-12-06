@@ -1,0 +1,13 @@
+<div>
+  <h1>Theme : </h1>
+  <mat-form-field>
+      <mat-select placeholder="Color" [formControl]="animalControl" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let i of colors" [value]="color">
+          {{colors}}
+        </mat-option>
+      </mat-select>
+      <!-- <mat-error *ngIf="themeControl.hasError('required')">Please choose an animal</mat-error> -->
+  </mat-form-field>
+  <button mat-raised-button class="fonctional-button" color="primary" >Save</button>
+</div>

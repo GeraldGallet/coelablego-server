@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DatabaseService, SortService, SimulateDataService } from './services';
+import { DatabaseService, SortService, SimulateDataService, ParameterService } from './services';
 import { FilterPipe } from './pipes';
 import { BagFilterPipe } from './pipes/bag-filter/bag-filter.pipe';
 
@@ -17,6 +17,7 @@ import { BagFilterPipe } from './pipes/bag-filter/bag-filter.pipe';
 	DatabaseService,
 	SortService,
 	SimulateDataService,
+  ParameterService,
 	FilterPipe,
 	BagFilterPipe
   ],
