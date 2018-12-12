@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, Subscription } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { DatabaseService } from './shared/services';
-
+import { ParameterService } from './shared/services';
 
 @Component({
   selector: 'app-root',
@@ -13,13 +13,17 @@ import { DatabaseService } from './shared/services';
 export class AppComponent {
   title = environment.appName;
   logo = environment.assets.yncreaLogo;
+  color: string;
+  colorSubject: Subscription;
+  constructor(private parameterService: ParameterService) {}
 
-  serverData: JSON;
-  employeeData: JSON;
-  employee: JSON;
-
-  constructor(private httpClient: HttpClient, private dbService: DatabaseService) {}
-
-  ngOnInit() {}
-
+  ngOnInit() {
+  this.colorSubject = this.parameterService.colorCodeSubject.subscribe(
+    (data: string) => {
+      console.log(data);
+      this.color = data;
+    }
+  );
+  this.parameterService.emitColorCodeSubject();
+  }
 }

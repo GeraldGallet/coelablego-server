@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { ParameterService } from '../shared/services/parameter/parameter.service';
+import { FormControl, Validators } from '@angular/forms';
+import { Routes, Router } from '@angular/router';
 
 @Component({
   selector: 'app-parameter-page',
@@ -10,22 +11,24 @@ import { ParameterService } from '../shared/services/parameter/parameter.service
 })
 export class ParameterPageComponent implements OnInit {
 
-  colorSubscription = new Observable();
-  color = '#55B460';
+  colorControl = new FormControl('', [Validators.required]);
+  selectFormControl = new FormControl('', Validators.required);
+
+  colorSelect: string;
   colors = [
     "Bleu",
     "Vert",
     "Rouge"
   ];
 
-  constructor(private parameterService: ParameterService) { }
+  constructor(private parameterService: ParameterService, private router: Router) { }
 
-  ngOnInit() {
-    this.colorSubscription = this.parameterService.observeColor();
-    this.parameterService.emitcolorSubject();
+  ngOnInit(){
   }
 
-
-
-
+  themeButton(){
+    console.log("coucou");
+    this.parameterService.setColor(this.colorSelect);
+    this.router.navigate(['/home']);
+  }
 }

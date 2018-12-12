@@ -11,9 +11,8 @@ import { HomepageModule } from './homepage/homepage.module';
 import { SearchpageModule } from './searchpage/searchpage.module';
 import { NotFoundErrorModule } from './not-found-error/not-found-error.module';
 import { DatabaseModule } from './database/database.module';
-//import { DatabaseViewModule } from './database-view/database-view.module';
-//import { DatabaseElementModule } from './database-element/database-element.module';
-
+import { ParameterPageModule } from './parameter-page/parameter-page.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,8 @@ import { DatabaseModule } from './database/database.module';
     HomepageModule,
     SearchpageModule,
     NotFoundErrorModule,
-    DatabaseModule
+    DatabaseModule,
+    ParameterPageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

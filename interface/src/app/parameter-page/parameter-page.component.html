@@ -1,13 +1,15 @@
 <div>
   <h1>Theme : </h1>
   <mat-form-field>
-      <mat-select placeholder="Color" [formControl]="animalControl" required>
+      <mat-select placeholder="Color" [formControl]="colorControl" [(value)]="colorSelect" required>
         <mat-option>--</mat-option>
-        <mat-option *ngFor="let i of colors" [value]="color">
-          {{colors}}
+        <mat-option *ngFor="let i of colors" value="{{i}}">
+          {{i}}
         </mat-option>
       </mat-select>
-      <!-- <mat-error *ngIf="themeControl.hasError('required')">Please choose an animal</mat-error> -->
+      <mat-error *ngIf="colorControl.hasError('required')">Please choose a valid color</mat-error>
   </mat-form-field>
-  <button mat-raised-button class="fonctional-button" color="primary" >Save</button>
+  <button mat-raised-button class="fonctional-button" color="primary" (click)="themeButton()">Save</button>
 </div>
+<p>{{ colorSelect }}</p>
+<p>{{ colorSubscription | async }}</p>
