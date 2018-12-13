@@ -18,7 +18,8 @@ export class ParameterPageComponent implements OnInit {
   colors = [
     "Bleu",
     "Vert",
-    "Rouge"
+    "Rouge",
+    "Noir"
   ];
 
   constructor(private parameterService: ParameterService, private router: Router) { }
