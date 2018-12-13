@@ -19,6 +19,11 @@ export class SearchpageComponent implements OnInit {
   bags$: Observable<Bag[]>;
   pieces$: Observable<Piece[]>;
 
+  testPiece = new Piece().deserialise({
+	color: "blue",
+	shape: "circle"
+  });
+
   constructor(
 		private router: Router,
 		private sortService: SortService,
@@ -46,4 +51,7 @@ export class SearchpageComponent implements OnInit {
 	this.pieces$ = this.dbService.getAllPieces();
   }
 
+  /* testSendPiece() {
+	this.dbService.postPiece(this.testPiece);
+  } */
 }

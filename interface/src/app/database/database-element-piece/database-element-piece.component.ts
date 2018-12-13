@@ -12,9 +12,15 @@ export class DatabaseElementPieceComponent implements OnInit {
   @Input() shape: string;
   @Input() imgUrl: string;
 
+  needsEdition = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  editPiece() {
+	this.needsEdition = !this.needsEdition;
   }
 
 }

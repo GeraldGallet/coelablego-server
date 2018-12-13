@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -22,6 +22,32 @@ export class DatabaseService {
 				});
 		}));
   }
+
+/*  postPiece(piece: Piece): Observable<Piece[]> {
+	let body = JSON.stringify(piece);
+
+	return this.httpClient.post<ServerResponse>(environment.apiUrl + "piece", body)
+		.pipe(map((res: ServerResponse) => {
+			return new ServerResponse().deserialise(res).data
+				.map((piece: Piece) => {
+					return new Piece().deserialise(piece);
+				});
+		}));
+  } */
+
+  /* postPiece(piece: Piece) {
+	let body = JSON.stringify(piece);
+	let options = {
+		headers: new HttpHeaders({
+			'Content-Type': 'application/json'
+		})
+	};
+
+	this.httpClient.post<Piece>(environment.apiUrl + "piece", body, options)
+		.subscribe(res => {
+			console.log(res);
+		});
+  } */
 
   getPieceByShape(shape: string): Observable<Piece[]> {
 	return this.httpClient.get<ServerResponse>(environment.apiUrl + "shape/" + shape)

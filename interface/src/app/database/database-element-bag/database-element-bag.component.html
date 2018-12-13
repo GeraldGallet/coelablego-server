@@ -5,4 +5,7 @@
 	<p *ngFor="let p of pieces">
 		{{ p }}
 	</p>
+	<p><button mat-button (click)="editBag()">Modifier ce sachet</button></p>
+	<p><app-database-form-bag *ngIf="needsEdition">
+		</app-database-form-bag></p>
 </div>

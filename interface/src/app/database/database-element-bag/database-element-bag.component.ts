@@ -12,9 +12,15 @@ export class DatabaseElementBagComponent implements OnInit {
   @Input() pieces: string[];
   @Input() imgUrl: string;
 
+  needsEdition = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  editBag() {
+	this.needsEdition = !this.needsEdition;
   }
 
 }

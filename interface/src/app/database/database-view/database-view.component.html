@@ -1,5 +1,9 @@
 <mat-tab-group>
 	<mat-tab label="Sachets">
+		<p><button mat-button (click)="declareNewBag()">Ajouter un nouveau sachet</button></p>
+		<p><app-database-form-bag *ngIf="newBag"
+				[pieces$]="this.pieces$">
+			</app-database-form-bag></p>
 		<ul>
 			<app-database-element-bag *ngFor="let b of (bags$ | async)"
 				[id]="b.id"
@@ -9,6 +13,9 @@
 		</ul>
 	</mat-tab>
 	<mat-tab label="Pièces">
+		<p><button mat-button (click)="declareNewPiece()">Ajouter une nouvelle pièce</button></p>
+		<p><app-database-form-piece *ngIf="newPiece">
+			</app-database-form-piece></p>
 		<ul>
 			<app-database-element-piece *ngFor="let p of (pieces$ | async)"
 				[id]="p.id"

@@ -14,6 +14,9 @@ export class DatabaseViewComponent implements OnInit {
   pieces$: Observable<Piece[]>;
   bags$: Observable<Bag[]>;
 
+  newBag = false;
+  newPiece = false;
+
   constructor(private dbService: DatabaseService) { }
 
   ngOnInit() {
@@ -27,6 +30,14 @@ export class DatabaseViewComponent implements OnInit {
 
   fetchBags() {
 	this.bags$ = this.dbService.getAllBags();
+  }
+
+  declareNewBag() {
+	this.newBag = !this.newBag;
+  }
+
+  declareNewPiece() {
+	this.newPiece = !this.newPiece;
   }
 
 }
