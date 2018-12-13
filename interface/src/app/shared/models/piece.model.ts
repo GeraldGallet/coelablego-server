@@ -4,14 +4,11 @@ export class Piece {
 	id: string;
 	color: string;
 	shape: string;
-	length: number;
-	height: number;
-	width: number;
-	diameter: number;
+	imgUrl: string;
 
 	deserialise(input: any): this {
 		Object.assign(this, input);
-		this.id = input._id;
+		this.id = input._id ? input._id : "0";
 
 		return this;
 	}

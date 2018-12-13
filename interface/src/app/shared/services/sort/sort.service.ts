@@ -14,7 +14,11 @@ export class SortService {
   constructor() { }
 
   getSelectedSort(): Bag {
-	return this.selectedSort;
+	return this.selectedSort || new Bag().deserialise({
+		id: "1",
+		name: "Aucun",
+		pieces: []
+	});
   }
 
   setSelectedSort(sort: Bag) {

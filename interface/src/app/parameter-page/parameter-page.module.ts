@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomepageComponent } from './homepage.component';
+import { ParameterPageComponent } from './parameter-page.component';
 import { MaterialModule } from 'src/app/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [HomepageComponent],
+  declarations: [ParameterPageComponent],
   imports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule
   ]
 })
-export class HomepageModule { }
+export class ParameterPageModule { }
