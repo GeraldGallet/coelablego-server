@@ -28,7 +28,8 @@ class Piece(Resource):
 
     def post(self):
         new = {}
-        for key, value in request.form.items():
+
+        for key, value in request.json.items():
             new[key] = value
 
         newId = collection.insert(new)

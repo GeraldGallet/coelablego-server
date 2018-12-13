@@ -29,7 +29,8 @@ class Bag(Resource):
 
     def post(self):
         new = {}
-        for key, value in request.form.items():
+        
+        for key, value in request.json.items():
             new[key] = value
 
         res_verif = collection.find_one({'name': new['name']})
