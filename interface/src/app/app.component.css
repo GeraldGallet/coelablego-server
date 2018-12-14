@@ -37,8 +37,8 @@ button:hover{
 
 nav{
 	/* background-color:#55B460;*/
-	display:inline-block; 
-	margin:60px auto 45px;
+	display:inline-block;
+	margin:4px auto 45px;
 	box-shadow:0 1px 1px #ccc;
 	border-radius:2px;
 }

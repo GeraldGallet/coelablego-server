@@ -7,7 +7,11 @@ export const environment = {
   appName: "LegoSorter",
   assets: {
 	yncreaLogo: "assets/yncrea.jpeg",
-  lego_picture: "assets/lego_chicken.jpg"
+  lego_picture: "assets/lego_chicken.jpg",
+  bannerBleu: "assets/bannerBleu.png",
+  bannerRouge: "assets/bannerRouge.png",
+  bannerVerte: "assets/bannerVerte.png",
+  bannerNoire: "assets/bannerNoire.png"
   },
   apiUrl: "http://127.0.0.1:5002/"
 };
