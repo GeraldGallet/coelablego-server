@@ -23,19 +23,7 @@ export class DatabaseService {
 		}));
   }
 
-/*  postPiece(piece: Piece): Observable<Piece[]> {
-	let body = JSON.stringify(piece);
-
-	return this.httpClient.post<ServerResponse>(environment.apiUrl + "piece", body)
-		.pipe(map((res: ServerResponse) => {
-			return new ServerResponse().deserialise(res).data
-				.map((piece: Piece) => {
-					return new Piece().deserialise(piece);
-				});
-		}));
-  } */
-
-  /* postPiece(piece: Piece) {
+  postPiece(piece: Piece): Observable<any> {
 	let body = JSON.stringify(piece);
 	let options = {
 		headers: new HttpHeaders({
@@ -43,11 +31,11 @@ export class DatabaseService {
 		})
 	};
 
-	this.httpClient.post<Piece>(environment.apiUrl + "piece", body, options)
-		.subscribe(res => {
-			console.log(res);
-		});
-  } */
+	return this.httpClient.post(environment.apiUrl + "piece", body, options)
+		.pipe(map((res: ServerResponse) => {
+			return new ServerResponse().deserialise(res).data;
+		}));
+  }
 
   getPieceByShape(shape: string): Observable<Piece[]> {
 	return this.httpClient.get<ServerResponse>(environment.apiUrl + "shape/" + shape)
@@ -68,6 +56,21 @@ export class DatabaseService {
 				});
 		}));
   }
+
+  postBag(bag: Bag): Observable<any> {
+	let body = JSON.stringify(bag);
+	console.log(body);
+	let options = {
+		headers: new HttpHeaders({
+			'Content-Type': 'application/json'
+		})
+	};
+
+	return this.httpClient.post(environment.apiUrl + "bag", body, options)
+		.pipe(map((res: ServerResponse) => {
+			return new ServerResponse().deserialise(res).data;
+		}));
+}
 
   getBagByName(name: string): Observable<Bag[]> {
 	return this.httpClient.get<ServerResponse>(environment.apiUrl + "name/" + name)
