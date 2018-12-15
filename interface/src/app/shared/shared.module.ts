@@ -1,23 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
+import { MaterialModule } from 'src/app/material.module';
 import { DatabaseService, SortService, SimulateDataService, ParameterService } from './services';
-import { FilterPipe } from './pipes';
-import { BagFilterPipe } from './pipes/bag-filter/bag-filter.pipe';
+import { FilterPipe, BagFilterPipe } from './pipes';
+import { BagDialogComponent } from './dialogs';
 
 @NgModule({
   declarations: [
 	FilterPipe,
-	BagFilterPipe
+	BagFilterPipe,
+	BagDialogComponent	
   ],
   imports: [
-    CommonModule
+    CommonModule,
+	FormsModule,
+	MaterialModule
   ],
   providers: [
 	DatabaseService,
 	SortService,
 	SimulateDataService,
-  ParameterService,
+	ParameterService,
 	FilterPipe,
 	BagFilterPipe
   ],

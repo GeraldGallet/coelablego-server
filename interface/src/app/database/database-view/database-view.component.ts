@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material';
 
 import { DatabaseService } from 'src/app/shared/services';
 import { Piece, Bag } from 'src/app/shared/models';
+import { BagDialogComponent } from 'src/app/shared/dialogs';
 
 @Component({
   selector: 'app-database-view',
@@ -14,10 +16,9 @@ export class DatabaseViewComponent implements OnInit {
   pieces$: Observable<Piece[]>;
   bags$: Observable<Bag[]>;
 
-  newBag = false;
-  newPiece = false;
+  bagToPost = new Bag();
 
-  constructor(private dbService: DatabaseService) { }
+  constructor(public dialog: MatDialog, private dbService: DatabaseService) { }
 
   ngOnInit() {
 	this.fetchPieces();
@@ -32,12 +33,23 @@ export class DatabaseViewComponent implements OnInit {
 	this.bags$ = this.dbService.getAllBags();
   }
 
-  declareNewBag() {
-	this.newBag = !this.newBag;
-  }
+  openPieceDialog() {}
 
-  declareNewPiece() {
-	this.newPiece = !this.newPiece;
+  openBagDialog() {
+	const dialogRef = this.dialog.open(BagDialogComponent, {
+		width: '600px',
+		data: this.bagToPost
+	});
+
+	dialogRef.afterClosed().subscribe(res => {
+		if (res !== undefined) {
+			this.dbService.postBag(this.bagToPost)
+				.subscribe(bag => {
+					console.log(bag);
+				});
+				
+		}
+	});
   }
 
 }

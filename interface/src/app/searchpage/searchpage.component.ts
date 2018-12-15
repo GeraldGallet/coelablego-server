@@ -24,6 +24,11 @@ export class SearchpageComponent implements OnInit {
 	shape: "circle"
   });
 
+  testBag = new Bag().deserialise({
+	name: "Test Bag",
+	pieces: []
+  }); 
+
   constructor(
 		private router: Router,
 		private sortService: SortService,
@@ -51,7 +56,17 @@ export class SearchpageComponent implements OnInit {
 	this.pieces$ = this.dbService.getAllPieces();
   }
 
-  /* testSendPiece() {
-	this.dbService.postPiece(this.testPiece);
-  } */
+  testSendPiece() {
+	this.dbService.postPiece(this.testPiece)
+		.subscribe((piece: Piece) => {
+			console.log(piece);
+		});
+  }
+
+  testSendBag() {
+	this.dbService.postBag(this.testBag)
+		.subscribe((bag: Bag) => {
+			console.log(bag);
+		});
+  }
 }

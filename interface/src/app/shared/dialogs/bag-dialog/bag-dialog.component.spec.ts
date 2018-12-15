@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DatabaseFormBagComponent } from './database-form-bag.component';
+import { BagDialogComponent } from './bag-dialog.component';
 
-describe('DatabaseFormBagComponent', () => {
-  let component: DatabaseFormBagComponent;
-  let fixture: ComponentFixture<DatabaseFormBagComponent>;
+describe('BagDialogComponent', () => {
+  let component: BagDialogComponent;
+  let fixture: ComponentFixture<BagDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DatabaseFormBagComponent ]
+      declarations: [ BagDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DatabaseFormBagComponent);
+    fixture = TestBed.createComponent(BagDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

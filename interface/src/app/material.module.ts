@@ -8,7 +8,8 @@ import {
 		MatButtonToggleModule,
 		MatIconModule,
 		MatTabsModule,
-		MatSelectModule
+		MatSelectModule,
+		MatDialogModule
 	} from '@angular/material';
 
 @NgModule({
@@ -19,20 +20,22 @@ import {
     MatRadioModule,
     MatFormFieldModule,
     MatInputModule,
-		MatButtonToggleModule,
-		MatIconModule,
-		MatTabsModule,
-		MatSelectModule
+	MatButtonToggleModule,
+	MatIconModule,
+	MatTabsModule,
+	MatSelectModule,
+	MatDialogModule
   ],
   exports: [
     MatListModule,
     MatRadioModule,
     MatFormFieldModule,
     MatInputModule,
-		MatButtonToggleModule,
-		MatIconModule,
-		MatTabsModule,
-		MatSelectModule
+	MatButtonToggleModule,
+	MatIconModule,
+	MatTabsModule,
+	MatSelectModule,
+	MatDialogModule
   ]
 })
 export class MaterialModule { }
