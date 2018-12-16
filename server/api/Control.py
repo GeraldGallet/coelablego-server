@@ -7,20 +7,28 @@ import pprint
 
 import json
 from . import database
+from . import running_vars
 
-class Start(Resource):
-    def post(self):
-        # Lancer le reset de la machine
+class StartProcess(Resource):
+    def get(self):
         return jsonify({'status': 204})
 
-class SearchPiece(Resource):
-    def get(self):
-        # Lancer la recherche d'une pièce
+    def post(self):
+        # Lancer le reset de la machine
+        global running_vars
+        running_vars = dict()
+
+        running_vars['bag_to_do'] = request.json['bag']
+        running_vars['number_of_bags'] = request.json['number']
+        running_vars['bags_done'] = 0
+
+        print(running_vars)
         return jsonify({'status': 204})
 
 class IdentifyPiece(Resource):
-    def get(self):
-        # Lancer l'identification de la pièce
+    def post(self):
+        # Récupération de la photo dans la requete
+        # Identification de la pièce
         return jsonify({'status': 204})
 
 class EndOfTour(Resource):
@@ -29,4 +37,5 @@ class EndOfTour(Resource):
             # Relancer un tour
             # Vidanger le bac de récupération
             # Changer le bac
+            # La machine a fini
         return jsonify({'status': 204})

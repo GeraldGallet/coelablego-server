@@ -8,6 +8,7 @@ from pymongo import MongoClient
 # Our very own imports
 from api.Piece import *
 from api.Bag import *
+from api.Control import *
 
 app = Flask(__name__)
 api = Api(app)
@@ -20,6 +21,11 @@ api.add_resource(PieceById, '/piece/<_id>', endpoint="piecebyid")
 
 api.add_resource(Bag, '/bag', methods=['GET', 'POST'], endpoint="bags")
 api.add_resource(BagByName, '/bag/name/<name>', endpoint="bag")
+
+api.add_resource(StartProcess, '/start', methods=['GET', 'POST'], endpoint="start_process")
+api.add_resource(IdentifyPiece, '/identify_piece', methods=['POST'], endpoint="identify_piece")
+api.add_resource(EndOfTour, '/end_of_tour', endpoint="end_of_tour")
+
 
 @app.route("/")
 def hello():
