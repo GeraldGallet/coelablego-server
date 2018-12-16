@@ -18,12 +18,12 @@ if __name__ == "__main__":
             'diameter': 12}
 
     res = db.piece.insert([lego1, lego2])
-
+    #print(res)
     bag = {'name': "Sac 1",
-          'pieces': res}
+          'pieces': [[res[0], 2], [res[1], 3]]}
 
     db.bag.insert(bag)
-    
+
     # Just leaving here some examples
     '''
     # Getting a collection

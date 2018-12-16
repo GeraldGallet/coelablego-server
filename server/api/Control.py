@@ -4,10 +4,15 @@ from flask_jsonpify import jsonify
 import simplejson as json
 from flask import request
 import pprint
+from bson import ObjectId
 
 import json
 from . import database
 from . import running_vars
+
+db_interface = database.DatabaseInterface()
+bag_collection = db_interface.db.bag
+piece_collection = db_interface.db.piece
 
 class StartProcess(Resource):
     def get(self):
@@ -18,17 +23,25 @@ class StartProcess(Resource):
         global running_vars
         running_vars = dict()
 
-        running_vars['bag_to_do'] = request.json['bag']
+        running_vars['bag_to_do'] = []
         running_vars['number_of_bags'] = request.json['number']
         running_vars['bags_done'] = 0
+        running_vars['trash_bag'] = []
 
+        res_query = bag_collection.find_one({"_id": ObjectId(request.json['bag'])})
+        for piece in res_query['pieces']:
+            for i in range(0, piece[1]):
+                running_vars['bag_to_do'].append(piece[0])
+
+        running_vars['current_bags'] = [running_vars['bag_to_do'], running_vars['bag_to_do'], running_vars['bag_to_do']]
+        print("--- running_vars ---")
         print(running_vars)
         return jsonify({'status': 204})
 
 class IdentifyPiece(Resource):
     def post(self):
         # Récupération de la photo dans la requete
-        # Identification de la pièce
+        # Identification de la pièce par le programme d'Axel
         return jsonify({'status': 204})
 
 class EndOfTour(Resource):
