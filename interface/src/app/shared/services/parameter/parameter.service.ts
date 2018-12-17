@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class ParameterService{
 
-  color = '#55B460';
   banner = environment.assets.bannerVerte;
   colorCodeSubject = new Subject<string>();
   bannerSubject = new Subject<string>();
@@ -32,7 +31,10 @@ export class ParameterService{
     }
   ];
 
-  constructor(){ }
+  constructor(){
+    this.color = this.initColor();
+    console.log(this.color)
+  }
 
   setColor(color:string){
     this.color = color;
@@ -44,6 +46,12 @@ export class ParameterService{
     this.emitBanner();
   }
 
+  initColor():string{
+    let localStorageItem = localStorage.getItem('color');
+    console.log(localStorageItem)
+    return localStorageItem ==null ? '#55B460' : localStorageItem;
+  }
+
   emitColorCodeSubject() {
     if (this.color ==='#55B460'){
       this.colorCodeSubject.next(this.color);
@@ -53,6 +61,7 @@ export class ParameterService{
         this.colorCodeSubject.next(i.code);
         this.banner = `banner${i.name}`;
         this.chooseBanner();
+        localStorage.setItem('color',i.name);
       }
     }
   }

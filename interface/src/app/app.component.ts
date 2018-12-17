@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ParameterService } from './shared/services';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,7 +14,6 @@ import { ParameterService } from './shared/services';
 export class AppComponent {
   title = environment.appName;
   logo = environment.assets.yncreaLogo;
-
 
   color: string;
   colorSubject: Subscription;
@@ -39,7 +39,5 @@ export class AppComponent {
     }
   );
   this.parameterService.emitBanner();
-  console.log(this.banner);
   }
-
 }
