@@ -21,6 +21,8 @@ export class AppComponent {
   banner:string;
   bannerSubject: Subscription;
   bannerSubbed: string;
+
+  background = environment.assets.background;
   constructor(private parameterService: ParameterService) {}
 
   ngOnInit() {
