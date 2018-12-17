@@ -46,9 +46,36 @@ class IdentifyPiece(Resource):
 
 class EndOfTour(Resource):
     def get(self):
-        # Choisir ce que l'on fait
-            # Relancer un tour
-            # Vidanger le bac de récupération
-            # Changer le bac
-            # La machine a fini
+        global running_vars
+
+        # Changement de bac
+        if(not(running_vars['current_bags'][0])):
+            running_vars['bags_done'] = running_vars['bags_done'] + 1
+            if(running_vars['bags_done'] <= (running_vars['bags_done'] - 3)):
+                running_vars['current_bags'][0] = running_vars['bag_to_do']
+                print("Change bag 1")
+
+        if(not(running_vars['current_bags'][1])):
+            running_vars['bags_done'] = running_vars['bags_done'] + 1
+            if(running_vars['bags_done'] <= (running_vars['bags_done'] - 3)):
+                running_vars['current_bags'][1] = running_vars['bag_to_do']
+                print("Change bag 2")
+
+        if(not(running_vars['current_bags'][2])):
+            running_vars['bags_done'] = running_vars['bags_done'] + 1
+            if(running_vars['bags_done'] <= (running_vars['bags_done'] - 3)):
+                running_vars['current_bags'][2] = running_vars['bag_to_do']
+                print("Change bag 3")
+
+        # Le travail de la machine est fini
+        if(running_vars['bags_done'] == running_vars['number_of_bags']):
+            return
+
+        # Vidanger le bac de récupération
+        if(len(running_vars['trash_bag']) >= 30):
+            print("Vidange du bac")
+            running_vars['trash_bag'] = []
+            return
+
+        # Relancer un tour
         return jsonify({'status': 204})

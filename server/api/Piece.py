@@ -16,7 +16,7 @@ class Piece(Resource):
     def get(self):
         res_query = collection.find()
 
-        if(res_query.count() == 0):
+        if(not(res_query)):
             return jsonify({'status': 404, 'message': "No Piece object found in database"});
 
         res = []
@@ -42,7 +42,7 @@ class PieceByShape(Resource):
     def get(self, shape):
         res_query = collection.find({"shape": shape})
 
-        if(res_query.count() == 0):
+        if(not(res_query)):
             return jsonify({'status': 404, 'message': "No Piece object has shape " + str(shape)});
 
         res = []
@@ -56,7 +56,7 @@ class PieceById(Resource):
     def get(self, _id):
         res_query = collection.find({"_id": ObjectId(_id)})
 
-        if(res_query.count() == 0):
+        if(not(res_query)):
             return jsonify({'status': 404, 'message': "No Piece object has id " + str(_id)});
 
         res = []

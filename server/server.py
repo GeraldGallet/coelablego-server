@@ -20,6 +20,7 @@ api.add_resource(PieceByShape, '/piece/shape/<shape>', endpoint="piecebyshape")
 api.add_resource(PieceById, '/piece/<_id>', endpoint="piecebyid")
 
 api.add_resource(Bag, '/bag', methods=['GET', 'POST'], endpoint="bags")
+api.add_resource(Bag, '/bag/<_id>', methods=['PUT'], endpoint="update_bag")
 api.add_resource(BagByName, '/bag/name/<name>', endpoint="bag")
 
 api.add_resource(StartProcess, '/start', methods=['GET', 'POST'], endpoint="start_process")
