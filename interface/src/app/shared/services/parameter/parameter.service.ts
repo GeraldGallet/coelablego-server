@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ParameterService{
 
+  color:string;
   banner = environment.assets.bannerVerte;
   colorCodeSubject = new Subject<string>();
   bannerSubject = new Subject<string>();
@@ -33,7 +34,6 @@ export class ParameterService{
 
   constructor(){
     this.color = this.initColor();
-    console.log(this.color)
   }
 
   setColor(color:string){
