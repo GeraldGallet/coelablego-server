@@ -40,8 +40,8 @@ class StartProcess(Resource):
 
 class IdentifyPiece(Resource):
     def post(self):
-        # Récupération de la photo dans la requete
-        # Identification de la pièce par le programme d'Axel
+        # Recuperation de la photo dans la requete
+        # Identification de la piece par le programme d'Axel
         return jsonify({'status': 204})
 
 class EndOfTour(Resource):
@@ -71,7 +71,7 @@ class EndOfTour(Resource):
         if(running_vars['bags_done'] == running_vars['number_of_bags']):
             return
 
-        # Vidanger le bac de récupération
+        # Vidanger le bac de recuperation
         if(len(running_vars['trash_bag']) >= 30):
             print("Vidange du bac")
             running_vars['trash_bag'] = []
