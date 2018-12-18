@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
-import { SortService } from 'src/app/shared/services';
+import { SortService, ArduinoService } from 'src/app/shared/services';
 import { Bag } from 'src/app/shared/models';
 
 @Component({
@@ -13,18 +13,15 @@ export class HomepageComponent implements OnInit {
 
   legoPicture = environment.assets.lego_picture;
   selectedSort: Bag;
+  quantity: string;
 
-  constructor(private sortService: SortService) { }
+  constructor(private sortService: SortService, private arduinoService: ArduinoService) { }
 
   ngOnInit() {
     this.selectedSort = this.sortService.getSelectedSort();
   }
 
-  demoSort(){
-    if(this.selectedSort.name === 'none') {
-      this.selectedSort.name = 'Test';
-    } else {
-      this.selectedSort.name = 'none';
-    }
+  startMachine() {
+	this.arduinoService.startMachine(parseInt(this.quantity), this.selectedSort.id);
   }
 }

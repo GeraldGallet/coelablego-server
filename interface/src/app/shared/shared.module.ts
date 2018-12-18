@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from 'src/app/material.module';
-import { DatabaseService, SortService, SimulateDataService, ParameterService } from './services';
+import { DatabaseService, SortService, SimulateDataService, ParameterService, ArduinoService } from './services';
 import { FilterPipe, BagFilterPipe } from './pipes';
 import { BagDialogComponent } from './dialogs';
 
@@ -23,6 +23,7 @@ import { BagDialogComponent } from './dialogs';
 	SortService,
 	SimulateDataService,
 	ParameterService,
+	ArduinoService,
 	FilterPipe,
 	BagFilterPipe
   ],
