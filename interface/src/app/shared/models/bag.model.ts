@@ -3,7 +3,7 @@ import { Deserialisable } from './deserialisable.model';
 export class Bag {
 	id: string;
 	name: string;
-	pieces: string[];
+	pieces: string[][];
 	
 	deserialise(input: any): this {
 		Object.assign(this, input);

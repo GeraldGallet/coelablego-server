@@ -17,6 +17,4 @@ export class DatabaseElementPieceComponent implements OnInit {
   ngOnInit() {
   }
 
-  openDialog() {}
-
 }
