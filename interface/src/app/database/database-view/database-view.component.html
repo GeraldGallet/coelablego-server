@@ -1,8 +1,9 @@
 <mat-tab-group>
 	<mat-tab label="Sachets">
+		<p><input [(ngModel)]="searchText" placeholder="Rechercher un sachet"></p>
 		<p><button mat-button (click)="openBagDialog()">Ajouter un nouveau sachet</button></p>
 		<ul>
-			<app-database-element-bag *ngFor="let b of (bags$ | async)"
+			<app-database-element-bag *ngFor="let b of (bags$ | async | bagFilter:searchText)"
 				[id]="b.id"
 				[name]="b.name"
 				[pieces]="b.pieces"
