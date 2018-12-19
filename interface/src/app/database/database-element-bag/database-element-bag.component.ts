@@ -1,4 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material';
+
+import { Bag } from 'src/app/shared/models';
+import { DatabaseService } from 'src/app/shared/services';
+import { BagDialogComponent } from 'src/app/shared/dialogs';
 
 @Component({
   selector: 'app-database-element-bag',
@@ -12,15 +17,27 @@ export class DatabaseElementBagComponent implements OnInit {
   @Input() pieces: string[];
   @Input() imgUrl: string;
 
-  needsEdition = false;
+  bagToPost = new Bag();
 
-  constructor() { }
+  constructor(public dialog: MatDialog, private dbService: DatabaseService) { }
 
   ngOnInit() {
   }
 
-  editBag() {
-	this.needsEdition = !this.needsEdition;
+  openDialog() {
+	const dialogRef = this.dialog.open(BagDialogComponent, {
+		width: '600px',
+		data: this.bagToPost
+	});
+
+	dialogRef.afterClosed().subscribe(res => {
+		if (res !== undefined) {
+			this.dbService.postBag(this.bagToPost)
+				.subscribe(bag => {
+					console.log(bag);
+				});
+		}
+	});
   }
 
 }

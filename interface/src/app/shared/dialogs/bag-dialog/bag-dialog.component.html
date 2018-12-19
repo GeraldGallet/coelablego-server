@@ -1,11 +1,12 @@
 <h1 mat-dialog-title>Ajouter un sachet</h1>
 <div mat-dialog-content>
-	<p>Nom: <input matInput [(ngModel)]="data.name"></p>
+	<p>Nom : <input matInput [(ngModel)]="data.name"></p>
 	<mat-selection-list [(ngModel)]="data.pieces">
 		<mat-list-option *ngFor="let p of (pieces$ | async)" [value]="p.id">
 			<p matLine>Id : {{ p.id }}</p>
 			<p matLine>Couleur : {{ p.color }}</p>
 			<p matLine>Forme : {{ p.shape }}</p>
+			<p matLine>Quantité à ajouter : <input matInput [(ngModel)]="quantite"></p>
 		</mat-list-option>
 	</mat-selection-list>
 </div>
