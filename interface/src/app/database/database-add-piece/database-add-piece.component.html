@@ -1,3 +1,19 @@
-<p>
-  database-add-piece works!
-</p>
+<mat-horizontal-stepper labelPosition="bottom" linear>
+	<mat-step label="Préparation">
+		<div>
+			<button mat-button matStepperNext type="button">Suivant</button>
+		</div>
+	</mat-step>
+	<mat-step label="Photo">
+		<div>
+			<button mat-button matStepperPrevious type="button">Précédent</button>
+			<button mat-button matStepperNext type="button">Suivant</button>
+		</div>
+	</mat-step>
+	<mat-step label="Confirmation">
+		<div>
+			<button mat-button matStepperPrevious type="button">Précédent</button>
+			<button mat-button (click)="onSubmit()">Confirmer</button>
+		</div>
+	</mat-step>
+</mat-horizontal-stepper>

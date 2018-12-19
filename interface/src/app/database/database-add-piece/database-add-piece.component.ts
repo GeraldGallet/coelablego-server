@@ -12,4 +12,7 @@ export class DatabaseAddPieceComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit() {
+  }
+
 }
