@@ -26,6 +26,9 @@ api.add_resource(BagByName, '/bag/name/<name>', endpoint="bag")
 api.add_resource(StartProcess, '/start', methods=['GET', 'POST'], endpoint="start_process")
 api.add_resource(IdentifyPiece, '/identify_piece', methods=['POST'], endpoint="identify_piece")
 api.add_resource(EndOfTour, '/end_of_tour', endpoint="end_of_tour")
+api.add_resource(BeginNewPiece, '/begin_new_piece', methods=['POST'], endpoint='beginnewpiece')
+api.add_resource(NewPhotoNewPiece, '/new_photo_new_piece', methods=['POST'], endpoint='newphotonewpiece')
+api.add_resource(SaveNewPiece, '/save_new_piece', methods=['POST'], endpoint='savenewpiece')
 
 
 @app.route("/")
@@ -50,6 +53,6 @@ api.add_resource(Employees_Name, '/employees/<employee_id>')
 
 
 if __name__ == '__main__':
-    app.run(port=5002)
+    app.run(port=5002, host='0.0.0.0')
     #db_client = DatabaseInterface()
     #db_client.initiate()
