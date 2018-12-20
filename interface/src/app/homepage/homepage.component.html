@@ -8,7 +8,8 @@
     </div>
     <div id="div-under-button">
       <p id="text-under-button"> Tri choisi : {{ selectedSort.name }}</p>
-      <button mat-raised-button class="fonctional-button" color="primary">Marche</button>
+	  <p>Nombre de sachets à réaliser : <input matInput [(ngModel)]="quantity"></p>
+      <button mat-raised-button class="fonctional-button" color="primary" (click)="startMachine()">Marche</button>
       <button mat-raised-button class="fonctional-button" color="warn">Arret</button>
     </div>
 </div>

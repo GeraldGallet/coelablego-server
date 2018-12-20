@@ -4,8 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { HomepageComponent } from 'src/app/homepage/homepage.component';
-import { SortService } from 'src/app/shared/services';
-import { DatabaseService } from 'src/app/shared/services';
+import { SortService, DatabaseService } from 'src/app/shared/services';
 import { BagFilterPipe } from 'src/app/shared/pipes';
 import { Piece, Bag } from 'src/app/shared/models';
 
@@ -17,17 +16,7 @@ import { Piece, Bag } from 'src/app/shared/models';
 export class SearchpageComponent implements OnInit {
 
   bags$: Observable<Bag[]>;
-  pieces$: Observable<Piece[]>;
-
-  testPiece = new Piece().deserialise({
-	color: "blue",
-	shape: "circle"
-  });
-
-  testBag = new Bag().deserialise({
-	name: "Test Bag",
-	pieces: []
-  }); 
+  pieces$: Observable<Piece[]>; 
 
   constructor(
 		private router: Router,
@@ -56,17 +45,4 @@ export class SearchpageComponent implements OnInit {
 	this.pieces$ = this.dbService.getAllPieces();
   }
 
-  testSendPiece() {
-	this.dbService.postPiece(this.testPiece)
-		.subscribe((piece: Piece) => {
-			console.log(piece);
-		});
-  }
-
-  testSendBag() {
-	this.dbService.postBag(this.testBag)
-		.subscribe((bag: Bag) => {
-			console.log(bag);
-		});
-  }
 }

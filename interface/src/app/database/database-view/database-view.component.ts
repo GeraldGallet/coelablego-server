@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material';
 
 import { DatabaseService } from 'src/app/shared/services';
 import { Piece, Bag } from 'src/app/shared/models';
-import { BagDialogComponent, PieceDialogComponent } from 'src/app/shared/dialogs';
+import { BagDialogComponent } from 'src/app/shared/dialogs';
 import { BagFilterPipe } from 'src/app/shared/pipes';
 
 @Component({
@@ -36,22 +36,6 @@ export class DatabaseViewComponent implements OnInit {
 
   fetchBags() {
 	this.bags$ = this.dbService.getAllBags();
-  }
-
-  openPieceDialog() {
-	const dialogRef = this.dialog.open(PieceDialogComponent, {
-		width: '600px',
-		data: this.pieceToPost
-	});
-
-	dialogRef.afterClosed().subscribe(res => {
-		if (res !== undefined) {
-			this.dbService.postPiece(this.pieceToPost)
-				.subscribe(piece => {
-					console.log(piece);
-				});
-		}
-	});
   }
 
   openBagDialog() {
