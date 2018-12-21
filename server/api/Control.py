@@ -44,7 +44,6 @@ class StartProcess(Resource):
             print("--- running_vars ---")
             print(running_vars)
 
-            # Call /lancement on ARDUINO
             global ip_arduino
             requests.get(ip_arduino + '/lancement')
             return jsonify({'status': 204})
@@ -69,40 +68,43 @@ class EndOfTour(Resource):
     def get(self):
         print("--- END OF TOUR ---");
         global running_vars
+        global ip_arduino
 
         if(not(running_vars == {})):
-            #global running_vars
 
             # Changement de bac
             if(not(running_vars['current_bags'][0])):
                 running_vars['bags_done'] = running_vars['bags_done'] + 1
                 if(running_vars['bags_done'] <= (running_vars['bags_done'] - 3)):
                     running_vars['current_bags'][0] = running_vars['bag_to_do']
-                    print("Change bag 1")
+                    requests.post(ip_arduino + '/changement_bac', data = "{\"key\": 1}")
 
             if(not(running_vars['current_bags'][1])):
                 running_vars['bags_done'] = running_vars['bags_done'] + 1
                 if(running_vars['bags_done'] <= (running_vars['bags_done'] - 3)):
                     running_vars['current_bags'][1] = running_vars['bag_to_do']
-                    print("Change bag 2")
+                    requests.post(ip_arduino + '/changement_bac', data = "{\"key\": 2}")
 
             if(not(running_vars['current_bags'][2])):
                 running_vars['bags_done'] = running_vars['bags_done'] + 1
                 if(running_vars['bags_done'] <= (running_vars['bags_done'] - 3)):
                     running_vars['current_bags'][2] = running_vars['bag_to_do']
-                    print("Change bag 3")
-
+                    requests.post(ip_arduino + '/changement_bac', data = "{\"key\": 3}")
+                    
             # Le travail de la machine est fini
             if(running_vars['bags_done'] == running_vars['number_of_bags']):
+                requests.get(ip_arduino + '/nouvelle_piece')
                 return
 
             # Vidanger le bac de recuperation
             if(len(running_vars['trash_bag']) >= 30):
                 print("Vidange du bac")
                 running_vars['trash_bag'] = []
+                requests.get(ip_arduino + '/lancement')
                 return
 
             # Relancer un tour
+            requests.get(ip_arduino + '/nouvelle_piece')
             return jsonify({'status': 204})
         return jsonify({'status': 400})
 
