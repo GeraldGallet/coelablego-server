@@ -90,7 +90,7 @@ class EndOfTour(Resource):
                 if(running_vars['bags_done'] <= (running_vars['bags_done'] - 3)):
                     running_vars['current_bags'][2] = running_vars['bag_to_do']
                     requests.post(ip_arduino + '/changement_bac', data = "{\"key\": 3}")
-                    
+
             # Le travail de la machine est fini
             if(running_vars['bags_done'] == running_vars['number_of_bags']):
                 requests.get(ip_arduino + '/nouvelle_piece')
@@ -132,7 +132,7 @@ class NewPhotoNewPiece(Resource):
         actual = request.json['actual']
 
         # Prendre la photo et la traiter
-        url = '/images/image' + str(actual) + '.jpg'
+        url = 'assets/pieces/image' + str(actual) + '.jpg'
         new_piece['url'].append(url)
         new_piece['caracs'].append({'carac': actual})
 
