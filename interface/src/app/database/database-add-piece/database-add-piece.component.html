@@ -1,19 +1,27 @@
-<mat-horizontal-stepper labelPosition="bottom" linear>
-	<mat-step label="Préparation">
+<mat-horizontal-stepper #stepper labelPosition="bottom" linear>
+	<mat-step label="Préparation" [editable]="false">
+		<p>Nombre de photos à prendre : <input matInput [(ngModel)]="nbOfPictures" required></p>
 		<div>
 			<button mat-button matStepperNext type="button">Suivant</button>
 		</div>
 	</mat-step>
-	<mat-step label="Photo">
+	<mat-step label="Photos" [editable]="false">
+		<!-- <p>URL de l'image : {{ pictureUrl$ | async }}</p> -->
+		<p><img src="{{ pictureUrlTest }}"></p>
+		<!-- <p><button mat-button *ngIf="pictures.length > 0" (click)="undoPicture()">Annuler la photo</button></p> -->
+		<p><button mat-button *ngIf="pictures.length != nbOfPictures" (click)="takePicture()">Prendre la photo suivante</button></p>
 		<div>
-			<button mat-button matStepperPrevious type="button">Précédent</button>
-			<button mat-button matStepperNext type="button">Suivant</button>
+			<button mat-button (click)="onSubmit(false)">Annuler</button>
+			<button mat-button matStepperNext *ngIf="pictures.length == nbOfPictures" type="button">Suivant</button>
 		</div>
 	</mat-step>
-	<mat-step label="Confirmation">
+	<mat-step label="Confirmation" [editable]="false">
+		<ul *ngFor="let p of pictures">
+			<img src="{{ p }}">
+		</ul>
 		<div>
-			<button mat-button matStepperPrevious type="button">Précédent</button>
-			<button mat-button (click)="onSubmit()">Confirmer</button>
+			<button mat-button (click)="onSubmit(false)">Annuler</button>
+			<button mat-button (click)="onSubmit(true)">Confirmer</button>
 		</div>
 	</mat-step>
 </mat-horizontal-stepper>

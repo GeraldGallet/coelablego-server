@@ -14,7 +14,8 @@ export const environment = {
   bannerNoire: "assets/bannerNoire.png",
   background: "assets/background.jpg"
   },
-  apiUrl: "http://127.0.0.1:5002/"
+  apiUrl: "http://127.0.0.1:5002/",
+  pictureTest: "assets/image1.jpg"
 };
 
 /*
