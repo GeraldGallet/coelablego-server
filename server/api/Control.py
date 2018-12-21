@@ -110,7 +110,7 @@ class EndOfTour(Resource):
 class BeginNewPiece(Resource):
     def post(self):
         global new_piece
-        # Début du processus
+        # Debut du processus
         if(not(new_piece == {})):
             return jsonify({'status': 400})
 
