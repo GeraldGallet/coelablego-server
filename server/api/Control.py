@@ -5,11 +5,13 @@ import simplejson as json
 from flask import request
 import pprint
 from bson import ObjectId
+import requests
 
 import json
 from . import database
 from . import running_vars
 from . import new_piece
+from . import ip_arduino
 
 db_interface = database.DatabaseInterface()
 bag_collection = db_interface.db.bag
@@ -43,6 +45,8 @@ class StartProcess(Resource):
             print(running_vars)
 
             # Call /lancement on ARDUINO
+            global ip_arduino
+            requests.get(ip_arduino + '/lancement')
             return jsonify({'status': 204})
         return jsonify({'status': 400})
 
@@ -51,23 +55,8 @@ class IdentifyPiece(Resource):
         print("--- IDENTIFY PIECE ---")
 
         data = str(request.stream.read())
-        data = data[2:len(data)-1]
-        #new_data = ""
-        #for i in range(0, len(data), 2):
-        #    new_data += chr(int(data[i:i+2]))
-        #data = ''.join(x for x in data if(x in ('a', 'b', 'c', 'd', 'e', 'f', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0')))
-        #data = data.decode('hex')
         print(data)
-        #data = bytes.fromhex(data)
-        #new_data = ""
-        #for i in range(0, len(data), 2):
-        #    new_data += str(chr(int(data[i:i+2])))
 
-        #print("New data: ")
-        #print(new_data)
-
-        with open(image_to_write, "a") as myfile:
-            myfile.write(data)
 
         global running_vars
         if(not(running_vars == {})):
