@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { ServerResponse } from 'src/app/shared/models';
+import { ArduinoResponse } from 'src/app/shared/models';
 
 @Injectable({
   providedIn: 'root'
@@ -48,9 +48,8 @@ export class ArduinoService {
 	};
 
 	return this.httpClient.post(environment.apiUrl + "new_photo_new_piece", body, this.options)
-		.pipe(map((res: string) => {
-			console.log(res);
-			return res;
+		.pipe(map((res: ArduinoResponse) => {
+			return new ArduinoResponse().deserialise(res).data.url;
 		}));
   }
 

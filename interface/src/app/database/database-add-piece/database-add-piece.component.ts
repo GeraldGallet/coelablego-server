@@ -14,7 +14,6 @@ export class DatabaseAddPieceComponent implements OnInit {
   @ViewChild('stepper') stepper;
 
   pictureUrl$: Observable<string>;
-  pictureUrlTest: string;
 
   nbOfPictures: number;
   pictureNb = 0;
@@ -25,19 +24,15 @@ export class DatabaseAddPieceComponent implements OnInit {
   ngOnInit() {
   }
 
-  undoPicture() {
-	this.pictureUrl$ = null;
-	this.pictureUrlTest = null;
-	this.pictures.pop();
+  startNewPiece(nb: number) {
+	this.arduinoService.beginNewPiece(nb);
   }
 
   takePicture() {
 	this.pictureNb++;
 	this.pictureUrl$ = this.arduinoService.takePicture(this.pictureNb);
 	this.pictureUrl$.subscribe(picture => {
-		this.pictureUrlTest = environment.pictureTest;
-		//this.pictures.push(picture);
-		this.pictures.push(this.pictureUrlTest);
+		this.pictures.push(picture);
 	});
   }
 
@@ -51,7 +46,6 @@ export class DatabaseAddPieceComponent implements OnInit {
 	this.nbOfPictures = null;
 	this.pictureNb = 0;
 	this.pictures = [];
-	this.pictureUrlTest = null;
 	this.stepper.reset();
   }
 

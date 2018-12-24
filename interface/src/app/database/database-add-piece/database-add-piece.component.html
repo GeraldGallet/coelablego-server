@@ -2,12 +2,12 @@
 	<mat-step label="Préparation" [editable]="false">
 		<p>Nombre de photos à prendre : <input matInput [(ngModel)]="nbOfPictures" required></p>
 		<div>
-			<button mat-button matStepperNext type="button">Suivant</button>
+			<button mat-button matStepperNext (click)="startNewPiece(nbOfPictures)" type="button">Suivant</button>
 		</div>
 	</mat-step>
 	<mat-step label="Photos" [editable]="false">
 		<!-- <p>URL de l'image : {{ pictureUrl$ | async }}</p> -->
-		<p><img src="{{ pictureUrlTest }}"></p>
+		<p><img src="{{ pictureUrl$ | async }}"></p>
 		<!-- <p><button mat-button *ngIf="pictures.length > 0" (click)="undoPicture()">Annuler la photo</button></p> -->
 		<p><button mat-button *ngIf="pictures.length != nbOfPictures" (click)="takePicture()">Prendre la photo suivante</button></p>
 		<div>
