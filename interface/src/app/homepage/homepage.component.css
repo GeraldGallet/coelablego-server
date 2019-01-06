@@ -18,6 +18,7 @@
   /* border: 1px solid red; */
   width: 45%;
   vertical-align: top;
+  padding-top: 3%;
   padding-right: 3%;
   display: inline-block;
   float:right;
@@ -38,10 +39,10 @@ mat-icon.red-icon {
 }
 
 #div-under-button {
+  width: 45%;
   /* border: 1px solid red; */
   float: left;
-  padding-left: 15%;
-  padding-bottom: 15%;
+  padding-left : 5%
 }
 
 /* Button */
