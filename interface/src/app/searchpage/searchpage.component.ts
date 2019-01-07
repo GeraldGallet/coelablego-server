@@ -16,7 +16,8 @@ import { Piece, Bag } from 'src/app/shared/models';
 export class SearchpageComponent implements OnInit {
 
   bags$: Observable<Bag[]>;
-  pieces$: Observable<Piece[]>; 
+  pieces$: Observable<Piece[]>;
+  selectedBag: Bag;
 
   constructor(
 		private router: Router,
@@ -30,10 +31,11 @@ export class SearchpageComponent implements OnInit {
   }
 
   selectBag(bag: Bag) {
-	this.sortService.setSelectedSort(bag);
+	this.selectedBag = bag;
   }
 
   goToSorting() {
+	this.sortService.setSelectedSort(this.selectedBag);
 	this.router.navigate(['/home']);
   }
 

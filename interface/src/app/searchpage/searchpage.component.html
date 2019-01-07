@@ -11,8 +11,8 @@
 </div>
 
 <div>
-	<button mat-button (click)="goToSorting()">
-		Choisir ce sachet
+	<button mat-button *ngIf="selectedBag" (click)="goToSorting()">
+		Confirmer
 	</button>
 </div>
 
