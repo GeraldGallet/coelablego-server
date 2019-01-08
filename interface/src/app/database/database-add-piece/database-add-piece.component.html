@@ -2,26 +2,28 @@
 	<mat-step label="Préparation" [editable]="false">
 		<p>Nombre de photos à prendre : <input matInput [(ngModel)]="nbOfPictures" required></p>
 		<div>
-			<button mat-button matStepperNext (click)="startNewPiece(nbOfPictures)" type="button">Suivant</button>
+			<button mat-raised-button color="primary" matStepperNext (click)="startNewPiece(nbOfPictures)" type="button">Suivant</button>
 		</div>
 	</mat-step>
 	<mat-step label="Photos" [editable]="false">
 		<!-- <p>URL de l'image : {{ pictureUrl$ | async }}</p> -->
-		<p><img src="{{ pictureUrl$ | async }}"></p>
+		<p><img class="picture" src="{{ pictureUrl$ | async }}"></p>
 		<!-- <p><button mat-button *ngIf="pictures.length > 0" (click)="undoPicture()">Annuler la photo</button></p> -->
-		<p><button mat-button *ngIf="pictures.length != nbOfPictures" (click)="takePicture()">Prendre la photo suivante</button></p>
+		<p><button mat-raised-button color="primary" *ngIf="pictures.length != nbOfPictures" (click)="takePicture()">Prendre la photo suivante</button></p>
 		<div>
-			<button mat-button (click)="onSubmit(false)">Annuler</button>
-			<button mat-button matStepperNext *ngIf="pictures.length == nbOfPictures" type="button">Suivant</button>
+			<button mat-raised-button color="warn" (click)="onSubmit(false)">Annuler</button>
+			<button mat-raised-button color="primary" matStepperNext *ngIf="pictures.length == nbOfPictures" type="button">Suivant</button>
 		</div>
 	</mat-step>
 	<mat-step label="Confirmation" [editable]="false">
-		<ul *ngFor="let p of pictures">
-			<img src="{{ p }}">
-		</ul>
-		<div>
-			<button mat-button (click)="onSubmit(false)">Annuler</button>
-			<button mat-button (click)="onSubmit(true)">Confirmer</button>
+		<div class=horiWrapper>
+			<ul *ngFor="let p of pictures">
+				<img class="picture2" src="{{ p }}">
+			</ul>
+		</div>
+		<div class="bellow">
+			<button mat-raised-button color="warn" (click)="onSubmit(false)">Annuler</button>
+			<button mat-raised-button color="primary" (click)="onSubmit(true)">Confirmer</button>
 		</div>
 	</mat-step>
 </mat-horizontal-stepper>
