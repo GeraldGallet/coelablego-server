@@ -6,6 +6,7 @@ import { DatabaseViewComponent, DatabaseElementPieceComponent, DatabaseElementBa
 import { BagDialogComponent } from 'src/app/shared/dialogs';
 import { MaterialModule } from 'src/app/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [DatabaseElementPieceComponent, DatabaseElementBagComponent, DatabaseViewComponent, DatabaseAddPieceComponent],
@@ -13,7 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
 	FormsModule,
 	MaterialModule,
-	SharedModule
+	SharedModule,
+  MatButtonModule
   ],
   entryComponents: [BagDialogComponent]
 })
