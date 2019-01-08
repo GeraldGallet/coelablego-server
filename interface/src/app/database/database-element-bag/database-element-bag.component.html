@@ -1,9 +1,5 @@
 <div class="wrapper">
-	<p>Id : {{ id }}</p>
-	<p>Nom : {{ name }}</p>
-	<p>Pièces :</p>
-	<p *ngFor="let p of pieces">
-		{{ p }}
-	</p>
+	<p>Nom : {{ bag.name }}</p>
+	<p><img class="picture" src="{{ bag.imgUrl }}"></p>
 	<p><button mat-raised-button color="primary" (click)="openDialog()">Modifier ce sachet</button></p>
 </div>

@@ -12,10 +12,7 @@ import { BagDialogComponent } from 'src/app/shared/dialogs';
 })
 export class DatabaseElementBagComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() name: string;
-  @Input() pieces: string[];
-  @Input() imgUrl: string;
+  @Input() bag: Bag;
 
   bagToPost = new Bag();
 

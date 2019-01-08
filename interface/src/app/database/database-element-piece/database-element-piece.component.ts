@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Piece } from 'src/app/shared/models';
+
 @Component({
   selector: 'app-database-element-piece',
   templateUrl: './database-element-piece.component.html',
@@ -7,10 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DatabaseElementPieceComponent implements OnInit {
 
-  @Input() id: string;
-  @Input() color: string;
-  @Input() shape: string;
-  @Input() imgUrl: string;
+  @Input() piece: Piece;
 
   constructor() { }
 
