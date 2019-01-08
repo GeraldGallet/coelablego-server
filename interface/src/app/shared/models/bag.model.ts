@@ -4,6 +4,7 @@ export class Bag {
 	id: string;
 	name: string;
 	pieces: string[][];
+	imgUrl: string;
 	
 	deserialise(input: any): this {
 		Object.assign(this, input);
