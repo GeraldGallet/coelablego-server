@@ -12,15 +12,18 @@ if __name__ == "__main__":
             'color': '#00FF00',
             'width': 12,
             'length': 12,
-            'height': 4}
+            'height': 4,
+			'imgUrl': 'assets/image1.jpg'}
     lego2 = {'shape': 'circle',
             'color': '#0000FF',
-            'diameter': 12}
+            'diameter': 12,
+			'imgUrl': 'assets/image1.jpg'}
 
     res = db.piece.insert([lego1, lego2])
     #print(res)
     bag = {'name': "Sac 1",
-          'pieces': [[res[0], 2], [res[1], 3]]}
+          'pieces': [[res[0], 2], [res[1], 3]],
+			'imgUrl': 'assets/image1.jpg'}
 
     db.bag.insert(bag)
 
