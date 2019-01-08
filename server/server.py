@@ -4,8 +4,9 @@ from flask_restful import Resource, Api
 from json import dumps
 from flask_jsonpify import jsonify
 from pymongo import MongoClient
+import sys, getopt
 
-# Our very own imports
+# Import de nos fichiers de contrôle
 from api.Piece import *
 from api.Bag import *
 from api.Control import *
@@ -15,6 +16,7 @@ api = Api(app)
 
 CORS(app)
 
+# On spécifie toutes les routes au serveur
 api.add_resource(Piece, '/piece', methods=['GET', 'POST'], endpoint="pieces")
 api.add_resource(PieceByShape, '/piece/shape/<shape>', endpoint="piecebyshape")
 api.add_resource(PieceById, '/piece/<_id>', endpoint="piecebyid")
@@ -29,30 +31,15 @@ api.add_resource(EndOfTour, '/end_of_tour', endpoint="end_of_tour")
 api.add_resource(BeginNewPiece, '/begin_new_piece', methods=['POST'], endpoint='beginnewpiece')
 api.add_resource(NewPhotoNewPiece, '/new_photo_new_piece', methods=['POST'], endpoint='newphotonewpiece')
 api.add_resource(SaveNewPiece, '/save_new_piece', methods=['POST'], endpoint='savenewpiece')
+api.add_resource(BeginPicture, '/begin_picture', methods=['POST'], endpoint='beginpicture')
+api.add_resource(PictureContent, '/picture_content', methods=['POST'], endpoint='picturecontent')
+api.add_resource(PrintMessage, '/print_message', methods=['POST'], endpoint='printmessage')
 
 
 @app.route("/")
 def hello():
     return jsonify({'text': 'Hello World!'})
-    #return 'Hello World!'
 
 
-class Employees(Resource):
-    def get(self):
-        return {'employees': [{'id':1, 'name':'Balram'},{'id':2, 'name':'Tom'}]}
-
-class Employees_Name(Resource):
-    def get(self, employee_id):
-        print('Employee id:' + employee_id)
-        result = {'data': {'id':1, 'name':'Balram'}}
-        return jsonify(result)
-
-
-api.add_resource(Employees, '/employees')
-api.add_resource(Employees_Name, '/employees/<employee_id>')
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(port=5002, host='0.0.0.0')
-    #db_client = DatabaseInterface()
-    #db_client.initiate()
