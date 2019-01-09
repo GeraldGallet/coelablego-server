@@ -188,7 +188,7 @@ class PictureContent(Resource):
     def post(self):
         global picture_taking
 
-        # On lit la donnée recue, et on la formate
+        # On lit la donnee recue, et on la formate
         data = request.stream.read()
         #print(data[0])
         received_line = bytearray.fromhex(data.decode('latin-1'))#.decode('latin-1')
@@ -196,7 +196,7 @@ class PictureContent(Resource):
         #print("Received block " + str(picture_taking['actual_block']))
 
 
-        # Si c'est le dernier bloc, on le coupe pour ne pas avoir trop de données dans le fichier
+        # Si c'est le dernier bloc, on le coupe pour ne pas avoir trop de donnees dans le fichier
         if(picture_taking['actual_block'] == picture_taking['expected_blocks']):
             stop = (picture_taking['size_of_file'] - (picture_taking['expected_blocks']-1)*length_of_block)
             received_line = received_line[0:int(stop)]

@@ -6,7 +6,7 @@ from flask_jsonpify import jsonify
 from pymongo import MongoClient
 import sys, getopt
 
-# Import de nos fichiers de contrôle
+# Import de nos fichiers de controle
 from api.Piece import *
 from api.Bag import *
 from api.Control import *
@@ -16,7 +16,7 @@ api = Api(app)
 
 CORS(app)
 
-# On spécifie toutes les routes au serveur
+# On specifie toutes les routes au serveur
 api.add_resource(Piece, '/piece', methods=['GET', 'POST'], endpoint="pieces")
 api.add_resource(PieceByShape, '/piece/shape/<shape>', endpoint="piecebyshape")
 api.add_resource(PieceById, '/piece/<_id>', endpoint="piecebyid")
