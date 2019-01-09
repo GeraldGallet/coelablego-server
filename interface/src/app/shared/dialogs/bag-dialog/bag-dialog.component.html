@@ -1,22 +1,15 @@
 <h1 mat-dialog-title>Ajouter un sachet</h1>
 <div mat-dialog-content>
 	<p>Nom : <input matInput [(ngModel)]="data.name"></p>
-	<mat-selection-list [(ngModel)]="data.pieces">
-		<mat-list-option *ngFor="let p of (pieces$ | async); trackBy:indexTracker" [value]="[p.id, p.quantite]">
+	<mat-list>
+		<mat-list-item *ngFor="let p of pieces">
 			<img matListAvatar src="{{ p.imgUrl }}">
-			<p matLine>Qte: {{ p.quantite }}</p>
-			<p matLine>Quantité à ajouter : <input matInput [(ngModel)]="p.quantite"></p>
-		</mat-list-option>
-	</mat-selection-list>
-
-	<!-- <mat-list [(ngmodel)]="data.pieces">
-		<mat-list-item *ngFor="let p of (pieces$ | async)">
-			<img matListAvatar src="{{ p.imgUrl }}">
-			<p matLine>Quantité à ajouter : <input matInput [value]="[p.id, p.quantite]" (input)="p.quantite=$event.target.value"></p>
+			<p matLine>Qte : {{ p.quantite }}</p>
+			<p matLine>Quantité à ajouter : <input matInput [(ngModel)]="p.quantity"></p>
 		</mat-list-item>
-	</mat-list> -->
+	</mat-list>
 </div>
 <div mat-dialog-actions>
-	<button mat-button [mat-dialog-close]="data">Confirmer</button>
+	<button mat-button (click)="onSubmit()">Confirmer</button>
 	<button mat-button (click)="onCancel()">Annuler</button>
 </div>

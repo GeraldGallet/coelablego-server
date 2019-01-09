@@ -5,7 +5,7 @@ export class Piece {
 	color: string;
 	shape: string;
 	imgUrl: string;
-	quantity: number;
+	quantity = 0;
 
 	deserialise(input: any): this {
 		Object.assign(this, input);

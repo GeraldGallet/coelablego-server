@@ -13,6 +13,7 @@ import { DatabaseService } from 'src/app/shared/services';
 export class BagDialogComponent implements OnInit {
 
   pieces$: Observable<Piece[]>;
+  pieces: Piece[];
 
   constructor(
 	public dialogRef: MatDialogRef<BagDialogComponent>,
@@ -20,15 +21,25 @@ export class BagDialogComponent implements OnInit {
 	private dbService: DatabaseService) { }
 
   ngOnInit() {
-	this.pieces$ = this.dbService.getAllPieces();
+	 this.dbService.getAllPieces().subscribe( (pieces: Piece[]) => {
+		this.pieces = pieces;
+	});
+	this.data.pieces = [[]]; 
+  }
+
+  onSubmit() {
+	let selectedPieces = this.pieces.filter( piece => {
+		return (piece.quantity !== 0);
+	});
+	for(var i = 0; i < selectedPieces.length; i++) {
+		this.data.pieces[i] = [this.pieces[i].id, this.pieces[i].quantity.toString()];
+	}
+
+	this.dialogRef.close(this.data);
   }
 
   onCancel() {
 	this.dialogRef.close();
-  }
-
-  indexTracker(index: number, value: any) {
-	return index;
   }
 
 }
