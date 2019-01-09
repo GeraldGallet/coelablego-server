@@ -48,7 +48,6 @@ export class ParameterService{
 
   initColor():string{
     let localStorageItem = localStorage.getItem('color');
-    console.log(localStorageItem)
     return localStorageItem ==null ? '#55B460' : localStorageItem;
   }
 
