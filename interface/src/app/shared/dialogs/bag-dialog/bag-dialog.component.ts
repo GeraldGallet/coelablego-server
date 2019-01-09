@@ -27,4 +27,8 @@ export class BagDialogComponent implements OnInit {
 	this.dialogRef.close();
   }
 
+  indexTracker(index: number, value: any) {
+	return index;
+  }
+
 }

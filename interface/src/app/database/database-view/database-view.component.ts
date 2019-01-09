@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material';
 
 import { DatabaseService } from 'src/app/shared/services';
 import { Piece, Bag } from 'src/app/shared/models';
-import { BagDialogComponent } from 'src/app/shared/dialogs';
+import { BagDialogComponent, BagConfirmDialogComponent } from 'src/app/shared/dialogs';
 import { BagFilterPipe, PieceFilterPipe } from 'src/app/shared/pipes';
 
 @Component({
@@ -51,6 +51,9 @@ export class DatabaseViewComponent implements OnInit {
 			this.dbService.postBag(this.bagToPost)
 				.subscribe(bag => {
 					console.log(bag);
+					const confirmDialog = this.dialog.open(BagConfirmDialogComponent, {
+						width: '600px'
+					});
 				});			
 		}
 	});

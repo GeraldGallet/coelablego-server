@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material';
 
 import { ArduinoService } from 'src/app/shared/services';
+import { PieceConfirmDialogComponent } from 'src/app/shared/dialogs';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -19,7 +21,7 @@ export class DatabaseAddPieceComponent implements OnInit {
   pictureNb = 0;
   pictures = [];
 
-  constructor(private arduinoService: ArduinoService) { }
+  constructor(public dialog: MatDialog, private arduinoService: ArduinoService) { }
 
   ngOnInit() {
   }
@@ -38,6 +40,9 @@ export class DatabaseAddPieceComponent implements OnInit {
 
   onSubmit(save: boolean) {
 	this.arduinoService.saveNewPiece(save);
+	/* const dialogRef = this.dialog.open(PieceConfirmDialogComponent, {
+		width: '600px'
+	}); */
 	this.reset();
   }
 
