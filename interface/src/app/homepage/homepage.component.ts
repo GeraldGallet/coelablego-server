@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Routes, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 import { SortService, ArduinoService } from 'src/app/shared/services';
@@ -15,7 +16,9 @@ export class HomepageComponent implements OnInit {
   selectedSort: Bag;
   quantity: string;
 
-  constructor(private sortService: SortService, private arduinoService: ArduinoService) { }
+  constructor(	private router: Router,
+				private sortService: SortService,
+				private arduinoService: ArduinoService) { }
 
   ngOnInit() {
     this.selectedSort = this.sortService.getSelectedSort();
@@ -24,4 +27,9 @@ export class HomepageComponent implements OnInit {
   startMachine() {
 	this.arduinoService.startMachine(parseInt(this.quantity), this.selectedSort.id);
   }
+
+  goToSearchpage() {
+	this.router.navigate(['/search']);
+  }
+	
 }
