@@ -1,15 +1,16 @@
 <mat-tab-group>
 	<mat-tab label="Sachets">
-		<p><input [(ngModel)]="searchText" placeholder="Rechercher un sachet"></p>
+		<p><input [(ngModel)]="searchBag" placeholder="Rechercher un sachet"></p>
 		<p><button mat-raised-button color="primary" (click)="openBagDialog()">Ajouter un nouveau sachet</button></p>
 		<ul>
-			<app-database-element-bag *ngFor="let b of (bags$ | async | bagFilter:searchText)"
+			<app-database-element-bag *ngFor="let b of (bags$ | async | bagFilter:searchBag)"
 				[bag]="b"></app-database-element-bag>
 		</ul>
 	</mat-tab>
 	<mat-tab label="Pièces">
+		<p><input [(ngModel)]="searchPiece" placeholder="Rechercher une pièce"></p>
 		<ul>
-			<app-database-element-piece *ngFor="let p of (pieces$ | async)"
+			<app-database-element-piece *ngFor="let p of (pieces$ | async | pieceFilter:searchPiece)"
 				[piece]="p"></app-database-element-piece>
 		</ul>
 	</mat-tab>

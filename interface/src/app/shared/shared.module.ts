@@ -4,14 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from 'src/app/material.module';
 import { DatabaseService, SortService, SimulateDataService, ParameterService, ArduinoService } from './services';
-import { FilterPipe, BagFilterPipe } from './pipes';
-import { BagDialogComponent } from './dialogs';
+import { FilterPipe, BagFilterPipe, PieceFilterPipe } from './pipes';
+import { BagDialogComponent, PieceConfirmDialogComponent, BagConfirmDialogComponent } from './dialogs';
 
 @NgModule({
   declarations: [
 	FilterPipe,
 	BagFilterPipe,
-	BagDialogComponent	
+	PieceFilterPipe,
+	BagDialogComponent,
+	PieceConfirmDialogComponent,
+	BagConfirmDialogComponent	
   ],
   imports: [
     CommonModule,
@@ -25,11 +28,13 @@ import { BagDialogComponent } from './dialogs';
 	ParameterService,
 	ArduinoService,
 	FilterPipe,
-	BagFilterPipe
+	BagFilterPipe,
+	PieceFilterPipe
   ],
   exports: [
 	FilterPipe,
-	BagFilterPipe
+	BagFilterPipe,
+	PieceFilterPipe
   ]
 })
 export class SharedModule { }

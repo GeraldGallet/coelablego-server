@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 import { DatabaseService } from 'src/app/shared/services';
 import { Piece, Bag } from 'src/app/shared/models';
 import { BagDialogComponent } from 'src/app/shared/dialogs';
-import { BagFilterPipe } from 'src/app/shared/pipes';
+import { BagFilterPipe, PieceFilterPipe } from 'src/app/shared/pipes';
 
 @Component({
   selector: 'app-database-view',
@@ -23,7 +23,8 @@ export class DatabaseViewComponent implements OnInit {
   constructor(
 	public dialog: MatDialog,
 	private dbService: DatabaseService,
-	private bagFilterPipe: BagFilterPipe) { }
+	private bagFilterPipe: BagFilterPipe,
+	private pieceFilterPipe: PieceFilterPipe) { }
 
   ngOnInit() {
 	this.fetchPieces();
