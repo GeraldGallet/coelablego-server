@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
 import { DatabaseService, SortService, SimulateDataService, ParameterService, ArduinoService } from './services';
 import { FilterPipe, BagFilterPipe, PieceFilterPipe } from './pipes';
-import { BagDialogComponent, PieceConfirmDialogComponent, BagConfirmDialogComponent } from './dialogs';
+import { BagDialogComponent, PieceConfirmDialogComponent, BagConfirmDialogComponent, BagEditDialogComponent } from './dialogs';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,8 @@ import { BagDialogComponent, PieceConfirmDialogComponent, BagConfirmDialogCompon
 	PieceFilterPipe,
 	BagDialogComponent,
 	PieceConfirmDialogComponent,
-	BagConfirmDialogComponent	
+	BagConfirmDialogComponent,
+	BagEditDialogComponent
   ],
   imports: [
     CommonModule,

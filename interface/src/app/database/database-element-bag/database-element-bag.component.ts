@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 
 import { Bag } from 'src/app/shared/models';
 import { DatabaseService } from 'src/app/shared/services';
-import { BagDialogComponent } from 'src/app/shared/dialogs';
+import { BagEditDialogComponent } from 'src/app/shared/dialogs';
 
 @Component({
   selector: 'app-database-element-bag',
@@ -14,22 +14,20 @@ export class DatabaseElementBagComponent implements OnInit {
 
   @Input() bag: Bag;
 
-  bagToPost = new Bag();
-
   constructor(public dialog: MatDialog, private dbService: DatabaseService) { }
 
   ngOnInit() {
   }
 
   openDialog() {
-	const dialogRef = this.dialog.open(BagDialogComponent, {
+	const dialogRef = this.dialog.open(BagEditDialogComponent, {
 		width: '600px',
-		data: this.bagToPost
+		data: this.bag
 	});
 
 	dialogRef.afterClosed().subscribe(res => {
 		if (res !== undefined) {
-			this.dbService.postBag(this.bagToPost)
+			this.dbService.putBag(this.bag)
 				.subscribe(bag => {
 					console.log(bag);
 				});

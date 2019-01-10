@@ -72,6 +72,21 @@ export class DatabaseService {
 		}));
 }
 
+  putBag(bag: Bag): Observable<any> {
+	let body = JSON.stringify(bag);
+	console.log(body);
+	let options = {
+		headers: new HttpHeaders({
+			'Content-Type': 'application/json'
+		})
+	};
+
+	return this.httpClient.put(environment.apiUrl + "bag/" + bag.id, body, options)
+		.pipe(map((res: ServerResponse) => {
+			return new ServerResponse().deserialise(res).data;
+		}));
+}
+
   getBagByName(name: string): Observable<Bag[]> {
 	return this.httpClient.get<ServerResponse>(environment.apiUrl + "name/" + name)
 		.pipe(map((res: ServerResponse) => {
