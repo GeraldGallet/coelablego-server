@@ -1,38 +1,40 @@
 /* Définition de nos PINs pour chaque élément */
 #include <SD.h>
+#include <Adafruit_VC0706.h>
+#include <SoftwareSerial.h>
+#include <Wire.h>
+#include "ComMotion.h"
 #define SD_CS_PIN 53
+
+Adafruit_VC0706 cam = Adafruit_VC0706(&Serial2);
 
 #define PISTON_PWM 3
 #define PISTON_DIR 23
-#define PISTON_PWM_VALUE 100
-#define PISTON_DELAI 2000
+#define PISTON_PWM_VALUE 255
+#define PISTON_DELAI 20000
 
 #define MOTEUR_PLATEFORME_PWM 4
 #define MOTEUR_PLATEFORME_DIR 24
-#define MOTEUR_PLATEFORME_PWM_VALUE 255
-#define MOTEUR_PLATEFORME_DELAI 765
+#define MOTEUR_PLATEFORME_PWM_VALUE 100
+#define MOTEUR_PLATEFORME_DELAI 1650
 
-#define CONVOYEUR_TREMIE_PWM 5
-#define CONVOYEUR_TREMIE_DIR 25
-#define CONVOYEUR_TREMIE_PWM_VALUE 100
+#define CONVOYEUR_TREMIE_PWM_VALUE 255
 
 #define CONVOYEUR_2_PWM 6
 #define CONVOYEUR_2_DIR 26
 #define CONVOYEUR_2_PWM_VALUE 100
-#define CONVOYEUR_2_DELAI
+#define CONVOYEUR_2_DELAI 5000
 
-#define CONVOYEUR_3_PWM 7
-#define CONVOYEUR_3_DIR 27
-#define CONVOYEUR_3_PWM_VALUE 100
-#define CONVOYEUR_3_DELAI 2000
+#define CONVOYEUR_3_PWM_VALUE 255
+#define CONVOYEUR_3_DELAI 5000
 
-#define MOTEUR_RAIL_PWM 8
-#define MOTEUR_RAIL_DIR 28
+#define MOTEUR_RAIL_PWM 5
+#define MOTEUR_RAIL_DIR 25
 #define MOTEUR_RAIL_PWM_VALUE 100
 #define MOTEUR_RAIL_DELAI 10000
 
-#define MOTEUR_PIVOT_PWM 9
-#define MOTEUR_PIVOT_DIR 29
+#define MOTEUR_PIVOT_PWM 6
+#define MOTEUR_PIVOT_DIR 26
 #define MOTEUR_PIVOT_PWM_VALUE 100
 #define MOTEUR_PIVOT_DELAI 2000
 
@@ -62,15 +64,25 @@ void piston(int sens) {
  * actuel : la partie actuellement tournée vers le convoyeur
  * destination : la partie à mettre devant le convoyeur
  */
+bool sens_plateforme = true;
 void plateforme (int actuel, int destination) {
-  for(int i = 0; i < abs(actuel - destination); i++) {
-    digitalWrite(MOTEUR_PLATEFORME_DIR, HIGH);
-    analogWrite(MOTEUR_PLATEFORME_PWM, MOTEUR_PLATEFORME_PWM_VALUE);
-    delay(MOTEUR_PLATEFORME_DELAI);
-    analogWrite(MOTEUR_PLATEFORME_PWM, 0);
+  if(sens_plateforme) {
+    for(int i = 0; i < abs(actuel - destination); i++) {
+      digitalWrite(MOTEUR_PLATEFORME_DIR, HIGH);
+      analogWrite(MOTEUR_PLATEFORME_PWM, MOTEUR_PLATEFORME_PWM_VALUE);
+      delay(MOTEUR_PLATEFORME_DELAI);
+      analogWrite(MOTEUR_PLATEFORME_PWM, 0);
+    }
+  } else {
+    for(int i = max(actuel, destination); i > min(actuel, destination); i--) {
+      digitalWrite(MOTEUR_PLATEFORME_DIR, LOW);
+      analogWrite(MOTEUR_PLATEFORME_PWM, MOTEUR_PLATEFORME_PWM_VALUE);
+      delay(MOTEUR_PLATEFORME_DELAI);
+      analogWrite(MOTEUR_PLATEFORME_PWM, 0);  
+    }
   }
   bac_actuel = destination;
-  
+  sens_plateforme = !sens_plateforme;
   return;
 }
 
@@ -79,32 +91,34 @@ void plateforme (int actuel, int destination) {
  * numero : le convoyeur à altérer
  * action : true = lancement, false = arret
  */
+int actual_conv[4] = {0, 0, 0, 100};
 void convoyeur(int numero, bool action) {
   int pwm = 0;
   int dir = 0;
   int toWrite = 0;
+  
   switch(numero) {
     case 1:
-      pwm = CONVOYEUR_TREMIE_PWM;
-      dir = CONVOYEUR_TREMIE_DIR;
       if(action) {
-        toWrite = CONVOYEUR_TREMIE_PWM_VALUE;
+        actual_conv[0] = CONVOYEUR_TREMIE_PWM_VALUE;
+      } else {
+        actual_conv[0] = 0;
       }
       break;
       
     case 2:
-      pwm = CONVOYEUR_2_PWM;
-      dir = CONVOYEUR_2_DIR;
       if(action) {
-        toWrite = CONVOYEUR_2_PWM_VALUE;
+        actual_conv[1] = CONVOYEUR_2_PWM_VALUE;
+      } else {
+        actual_conv[1] = 0;
       }
       break;
 
     case 3:
-      pwm = CONVOYEUR_3_PWM;
-      dir = CONVOYEUR_3_DIR;
       if(action) {
-        toWrite = CONVOYEUR_3_PWM_VALUE;
+        actual_conv[2] = CONVOYEUR_3_PWM_VALUE;
+      } else {
+        actual_conv[2] = 0;
       }
       break;
 
@@ -112,8 +126,12 @@ void convoyeur(int numero, bool action) {
       break;
   }
 
-  digitalWrite(dir, HIGH);
-  analogWrite(pwm, toWrite);
+
+  Serial.println("done");
+  Serial.println(actual_conv[0]);
+  Serial.println(actual_conv[1]);
+  Serial.println(actual_conv[2]);
+  IndividualMotorControl(actual_conv[0], actual_conv[1], actual_conv[2], actual_conv[3]);
   return;
 }
 
@@ -124,14 +142,14 @@ void convoyeur(int numero, bool action) {
  */
 void rail(int sens) {
   if(sens) {
-    digitalWrite(MOTEUR_RAIL_DIR, HIGH);
+    digitalWrite(MOTEUR_PLATEFORME_DIR, HIGH);
   } else {
-    digitalWrite(MOTEUR_RAIL_DIR, LOW);
+    digitalWrite(MOTEUR_PLATEFORME_DIR, LOW);
   }
 
-  digitalWrite(MOTEUR_RAIL_PWM, MOTEUR_RAIL_PWM_VALUE);
-  delay(MOTEUR_RAIL_DELAI);
-  digitalWrite(MOTEUR_RAIL_PWM, 0);
+  analogWrite(MOTEUR_PLATEFORME_PWM, CONVOYEUR_3_PWM_VALUE);
+  //delay(MOTEUR_RAIL_DELAI);
+  //analogWrite(MOTEUR_PLATEFORME_PWM, 0);
   return;
 }
 
@@ -156,18 +174,13 @@ void pivot(int sens) {
  */
 void route_lancement() {
   Serial.println("route_lancement");
-  //convoyeur(1, true);
-  //convoyeur(2, true);
-  plateforme(1, 3);
-  piston(true);
+  convoyeur(1, true);
+  convoyeur(2, true);
 
   while(digitalRead(PIR_SENSOR_PIN) == LOW);
 
-  plateforme(3, 1);
-  piston(false);
-  //convoyeur(1, false);
-  //convoyeur(2, false);
-  //lancement();
+  convoyeur(1, false);
+  convoyeur(2, false);
 }
 
 /*
@@ -213,6 +226,7 @@ void route_reset_machine() {
  * Route nous sommant de prendre une photo et de l'envoyer à l'ESP
  */
 void route_prendre_photo() {
+  /*
   // Prendre la photo
   Serial.println("route_prendre_photo");
   int size_of_block = 1024;
@@ -239,37 +253,130 @@ void route_prendre_photo() {
     // if the file didn't open, print an error:
     Serial.println("error opening image.jpg");
   }
+  */
 }
 
 void setup() {
   // On ouvre une communication serie hardware pour les messages destines au moniteur série
   Serial.begin(9600);
-  // On ouvre la communication serie software pour l'ESP8266
   Serial1.begin(115200);
+  Serial2.begin(9600);
 
   // Configuration de nos sorties
   pinMode(PISTON_PWM, OUTPUT);
   pinMode(PISTON_DIR, OUTPUT);
-  pinMode(CONVOYEUR_TREMIE_PWM, OUTPUT);
-  pinMode(CONVOYEUR_TREMIE_DIR, OUTPUT);
-  pinMode(CONVOYEUR_2_PWM, OUTPUT);
-  pinMode(CONVOYEUR_2_DIR, OUTPUT);
+  pinMode(MOTEUR_PLATEFORME_PWM, OUTPUT);
+  pinMode(MOTEUR_PLATEFORME_DIR, OUTPUT);
+  pinMode(MOTEUR_RAIL_PWM, OUTPUT);
+  pinMode(MOTEUR_RAIL_DIR, OUTPUT);
+  pinMode(MOTEUR_PIVOT_PWM, OUTPUT);
+  pinMode(MOTEUR_PIVOT_DIR, OUTPUT);
 
+  Wire.begin(1);
+  BasicConfig(0,19,60,250,250,250,250,0,1);      
+   
+  Serial.println("Starting ComMotion3 ...");
+  IndividualMotorControl(0,0,0,0); 
+   
   if(SD.begin(SD_CS_PIN)) {
     Serial.println("SD Card OK");
   } else {
     Serial.println("SD Card K.O");
   }
 
+  // Initialisation de la caméra
+  if (cam.begin()) {
+    Serial.println("Camera Found:");
+  } else {
+    Serial.println("No camera found?");
+    //return;
+  }
+
+  /*
+  char *reply = cam.getVersion();
+  if (reply == 0) {
+    Serial.print("Failed to get version");
+  } else {
+    Serial.println("-----------------");
+    Serial.print(reply);
+    Serial.println("-----------------");
+  }
+
+  cam.setImageSize(VC0706_640x480);
+  Serial.println("Snap in 3 secs...");
+  delay(3000);
+
+  if (! cam.takePicture()) 
+    Serial.println("Failed to snap!");
+  else 
+    Serial.println("Picture taken!");
+  
+  // Create an image with the name IMAGExx.JPG
+  char filename[14];
+  strcpy(filename, "IMAGEJ~1.JPG");
+
+  /*for (int i = 0; i < 100; i++) {
+    filename[5] = '0' + i/10;
+    filename[6] = '0' + i%10;
+    // create if does not exist, do not open existing, write, sync after write
+    if (! SD.exists(filename)) {
+      break;
+    }
+  }
+  
+  // Open the file for writing
+  File imgFile = SD.open(filename, FILE_WRITE);
+
+  // Get the size of the image (frame) taken  
+  uint16_t jpglen = cam.frameLength();
+  Serial.print("Storing ");
+  Serial.print(jpglen, DEC);
+  Serial.print(" byte image.");
+
+  int32_t my_time = millis();
+  pinMode(8, OUTPUT);
+  // Read all the data up to # bytes!
+  byte wCount = 0; // For counting # of writes
+  while (jpglen > 0) {
+    // read 32 bytes at a time;
+    uint8_t *my_buffer;
+    uint8_t bytesToRead = min(1024, jpglen); // change 32 to 64 for a speedup but may not work with all setups!
+    my_buffer = cam.readPicture(bytesToRead);
+    imgFile.write(my_buffer, bytesToRead);
+    if(++wCount >= 64) { // Every 2K, give a little feedback so it doesn't appear locked up
+      Serial.print('.');
+      wCount = 0;
+    }
+    //Serial.print("Read ");  Serial.print(bytesToRead, DEC); Serial.println(" bytes");
+    jpglen -= bytesToRead;
+  }
+  imgFile.close();
+
+  my_time = millis() - my_time;
+  Serial.println("done!");
+  Serial.print(my_time); Serial.println(" ms elapsed");
+  */
+  
   Serial.println("Arduino Pret");
-  //plateforme(1, 3);
-  //piston(true);
-  //piston(false);
-  //route_lancement();
+  //rail(true);
+  piston(true);
+  piston(false);
+  /*
   convoyeur(1, true);
-  delay(10000);
-  convoyeur(1, false);
+  delay(2000);
+  //convoyeur(1, false);
+  convoyeur(2, true);
+  delay(2000);
+  //convoyeur(2, false);
+  convoyeur(3, true);
+  delay(2000);
+  //convoyeur(3, false);
+  */
+  
+  
+  
 }
+
 int done = 0;
 
 void loop() {
@@ -287,13 +394,13 @@ void loop() {
         route_nouvelle_piece();
 
       } else if(ordre == "sortir_piece\r") {
-        c = Serial1.read();
-        bac = c - '0';
+        bac = Serial1.read();
+        if(bac > 3) {
+          bac -= 48;
+        }
         route_sortir_piece(bac);
 
       } else if(ordre == "changement_bac\r") {
-        //c = Serial1.read();
-        //bac = c - '0';
         bac = Serial1.read();
         if(bac > 3) {
           bac -= 48;
