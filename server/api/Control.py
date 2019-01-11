@@ -139,9 +139,9 @@ class NewPhotoNewPiece(Resource):
         actual = request.json['actual']
 
         # Prendre la photo et la traiter
-        requests.get(ip_arduino + '/lancement')
+        #requests.get(ip_arduino + '/lancement')
         purpose_of_picture = 1
-        url = 'assets/pieces/image' + str(actual) + '.jpg'
+        url = 'assets/pieces/image' + str(actual) + '.png'
         new_piece['url'].append(url)
         new_piece['caracs'].append({'carac': actual})
 

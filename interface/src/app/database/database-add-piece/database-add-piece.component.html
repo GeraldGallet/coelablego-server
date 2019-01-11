@@ -1,11 +1,14 @@
 <mat-horizontal-stepper #stepper labelPosition="bottom" linear>
 	<mat-step label="Préparation" [editable]="false">
+		<p> Déclarez ici le nombre de photographies à réaliser pour la pièce. Ce nombre doit être égal au nombre de faces visibles de forme différente de la pièce. En cas de doute, veuillez vous reporter au guide d'utilisation.</p>
+		<br/>
 		<p>Nombre de photos à prendre : <input matInput [(ngModel)]="nbOfPictures" required></p>
 		<div>
 			<button mat-raised-button color="primary" matStepperNext (click)="startNewPiece(nbOfPictures)" type="button">Suivant</button>
 		</div>
 	</mat-step>
 	<mat-step label="Photos" [editable]="false">
+		<p> Pour chaque étape, veuillez poser la pièce dans l'espace prévu à cet effet sur la machine. Veillez à bien changer la face visible. Si la photographie vous convient, passez à la suivante.</p>
 		<!-- <p>URL de l'image : {{ pictureUrl$ | async }}</p> -->
 		<p><img class="picture" src="{{ pictureUrl$ | async }}"></p>
 		<!-- <p><button mat-button *ngIf="pictures.length > 0" (click)="undoPicture()">Annuler la photo</button></p> -->
@@ -16,6 +19,7 @@
 		</div>
 	</mat-step>
 	<mat-step label="Confirmation" [editable]="false">
+		<p> Veuillez vérifier que les photographies prises vous conviennent. Confirmez si c'est le cas, ou annulez la procédure.</p>
 		<div class=horiWrapper>
 			<ul *ngFor="let p of pictures">
 				<img class="picture2" src="{{ p }}">
