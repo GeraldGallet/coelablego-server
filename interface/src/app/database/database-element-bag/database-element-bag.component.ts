@@ -17,6 +17,7 @@ export class DatabaseElementBagComponent implements OnInit {
   constructor(public dialog: MatDialog, private dbService: DatabaseService) { }
 
   ngOnInit() {
+	console.log(this.bag);
   }
 
   openDialog() {
@@ -27,10 +28,7 @@ export class DatabaseElementBagComponent implements OnInit {
 
 	dialogRef.afterClosed().subscribe(res => {
 		if (res !== undefined) {
-			this.dbService.putBag(this.bag)
-				.subscribe(bag => {
-					console.log(bag);
-				});
+			this.dbService.putBag(this.bag);
 		}
 	});
   }

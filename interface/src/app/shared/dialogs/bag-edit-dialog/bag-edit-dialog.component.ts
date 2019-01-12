@@ -22,16 +22,6 @@ export class BagEditDialogComponent implements OnInit {
   ngOnInit() {
 	this.dbService.getAllPieces().subscribe( (pieces: Piece[]) => {
 		this.pieces = pieces;
-
-	for(var i = 0; i < this.data.pieces.length; i++) {
-		console.log(i);
-		for(var j = 0; j < this.pieces.length; j++) {
-			if(this.data.pieces[i][0] == this.pieces[j].id) {
-				console.log("piece found");
-				this.pieces[j].quantity = parseInt(this.data.pieces[i][1]);
-			}
-		}
-	}
 	});
   }
 

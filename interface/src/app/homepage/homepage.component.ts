@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 
+import { environment } from 'src/environments/environment';
 import { SortService, ArduinoService } from 'src/app/shared/services';
 import { Bag } from 'src/app/shared/models';
 

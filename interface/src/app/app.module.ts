@@ -5,30 +5,30 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { SharedModule } from './shared/shared.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { SearchpageModule } from './searchpage/searchpage.module';
 import { NotFoundErrorModule } from './not-found-error/not-found-error.module';
 import { DatabaseModule } from './database/database.module';
 import { ParameterPageModule } from './parameter-page/parameter-page.module';
-import { MatButtonModule } from '@angular/material/button';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+	AppRoutingModule,
     SharedModule,
     HomepageModule,
     SearchpageModule,
     NotFoundErrorModule,
     DatabaseModule,
     ParameterPageModule,
+	MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

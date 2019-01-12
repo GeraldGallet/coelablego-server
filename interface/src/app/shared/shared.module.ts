@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from 'src/app/material.module';
-import { DatabaseService, SortService, SimulateDataService, ParameterService, ArduinoService } from './services';
-import { FilterPipe, BagFilterPipe, PieceFilterPipe } from './pipes';
+import { DatabaseService, SortService, ParameterService, ArduinoService } from './services';
+import { BagFilterPipe, PieceFilterPipe } from './pipes';
 import { BagDialogComponent, PieceConfirmDialogComponent, BagConfirmDialogComponent, BagEditDialogComponent } from './dialogs';
 
 @NgModule({
   declarations: [
-	FilterPipe,
 	BagFilterPipe,
 	PieceFilterPipe,
 	BagDialogComponent,
@@ -25,15 +24,12 @@ import { BagDialogComponent, PieceConfirmDialogComponent, BagConfirmDialogCompon
   providers: [
 	DatabaseService,
 	SortService,
-	SimulateDataService,
 	ParameterService,
 	ArduinoService,
-	FilterPipe,
 	BagFilterPipe,
 	PieceFilterPipe
   ],
   exports: [
-	FilterPipe,
 	BagFilterPipe,
 	PieceFilterPipe
   ]

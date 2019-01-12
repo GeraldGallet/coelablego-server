@@ -12,7 +12,6 @@ import { DatabaseService } from 'src/app/shared/services';
 })
 export class BagDialogComponent implements OnInit {
 
-  pieces$: Observable<Piece[]>;
   pieces: Piece[];
 
   constructor(

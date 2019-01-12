@@ -49,6 +49,7 @@ export class ArduinoService {
 
 	return this.httpClient.post(environment.apiUrl + "new_photo_new_piece", body, this.options)
 		.pipe(map((res: ArduinoResponse) => {
+			console.log(res);
 			return new ArduinoResponse().deserialise(res).data.url;
 		}));
   }

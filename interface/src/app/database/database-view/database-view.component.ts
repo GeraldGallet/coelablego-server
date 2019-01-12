@@ -47,10 +47,8 @@ export class DatabaseViewComponent implements OnInit {
 
 	dialogRef.afterClosed().subscribe(res => {
 		if (res !== undefined) {
-			console.log(res);
 			this.dbService.postBag(this.bagToPost)
 				.subscribe(bag => {
-					console.log(bag);
 					const confirmDialog = this.dialog.open(BagConfirmDialogComponent, {
 						width: '600px'
 					});

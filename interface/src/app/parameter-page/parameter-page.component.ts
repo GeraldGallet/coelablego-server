@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ParameterService } from '../shared/services/parameter/parameter.service';
 import { FormControl, Validators } from '@angular/forms';
+
+import { ParameterService } from 'src/app/shared/services';
 
 @Component({
   selector: 'app-parameter-page',

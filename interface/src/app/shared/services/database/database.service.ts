@@ -16,6 +16,7 @@ export class DatabaseService {
   getAllPieces(): Observable<Piece[]> {
 	return this.httpClient.get<ServerResponse>(environment.apiUrl + "piece")
 		.pipe(map((res: ServerResponse) => {
+			console.log(res);
 			return new ServerResponse().deserialise(res).data
 				.map((piece: Piece) => {
 					return new Piece().deserialise(piece);
@@ -33,6 +34,7 @@ export class DatabaseService {
 
 	return this.httpClient.post(environment.apiUrl + "piece", body, options)
 		.pipe(map((res: ServerResponse) => {
+			console.log(res);
 			return new ServerResponse().deserialise(res).data;
 		}));
   }
@@ -40,6 +42,7 @@ export class DatabaseService {
   getPieceByShape(shape: string): Observable<Piece[]> {
 	return this.httpClient.get<ServerResponse>(environment.apiUrl + "shape/" + shape)
 		.pipe(map((res: ServerResponse) => {
+			console.log(res);
 			return new ServerResponse().deserialise(res).data
 				.map((piece: Piece) => {
 					return new Piece().deserialise(piece);
@@ -50,6 +53,7 @@ export class DatabaseService {
   getAllBags(): Observable<Bag[]> {
 	return this.httpClient.get<ServerResponse>(environment.apiUrl + "bag")
 		.pipe(map((res: ServerResponse) => {
+			console.log(res);
 			return new ServerResponse().deserialise(res).data
 				.map((bag: Bag) => {
 					return new Bag().deserialise(bag);
@@ -59,7 +63,6 @@ export class DatabaseService {
 
   postBag(bag: Bag): Observable<any> {
 	let body = JSON.stringify(bag);
-	console.log(body);
 	let options = {
 		headers: new HttpHeaders({
 			'Content-Type': 'application/json'
@@ -68,13 +71,13 @@ export class DatabaseService {
 
 	return this.httpClient.post(environment.apiUrl + "bag", body, options)
 		.pipe(map((res: ServerResponse) => {
+			console.log(res);
 			return new ServerResponse().deserialise(res).data;
 		}));
 }
 
   putBag(bag: Bag): Observable<any> {
 	let body = JSON.stringify(bag);
-	console.log(body);
 	let options = {
 		headers: new HttpHeaders({
 			'Content-Type': 'application/json'
@@ -83,6 +86,7 @@ export class DatabaseService {
 
 	return this.httpClient.put(environment.apiUrl + "bag/" + bag.id, body, options)
 		.pipe(map((res: ServerResponse) => {
+			console.log(res);
 			return new ServerResponse().deserialise(res).data;
 		}));
 }
@@ -90,6 +94,7 @@ export class DatabaseService {
   getBagByName(name: string): Observable<Bag[]> {
 	return this.httpClient.get<ServerResponse>(environment.apiUrl + "name/" + name)
 		.pipe(map((res: ServerResponse) => {
+			console.log(res);
 			return new ServerResponse().deserialise(res).data
 				.map((bag: Bag) => {
 					return new Bag().deserialise(bag);
