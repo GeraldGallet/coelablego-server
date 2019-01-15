@@ -20,6 +20,18 @@ if __name__ == "__main__":
 			'imgUrl': 'assets/image2.jpg'}
 
     res = db.piece.insert([lego1, lego2])
+    carac1 = {'shape': 'rectangle',
+              'color': '#00FF00',
+              'size': 4826929,
+              'piece': res[0]}
+
+    carac2 = {'shape': 'circle',
+              'color': '#0000FF',
+              'size': 128546,
+              'piece': res[1]}
+
+    db.caracteristics.insert([carac1, carac2])
+
     #print(res)
     bag = {'name': "Sachet Exemple",
           'pieces': [[res[0], 2], [res[1], 3]],

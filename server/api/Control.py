@@ -50,7 +50,7 @@ class StartProcess(Resource):
             print(running_vars)
 
             global ip_arduino
-            #requests.get(ip_arduino + '/lancement')
+            requests.get(ip_arduino + '/lancement')
             return jsonify({'status': 204})
         return jsonify({'status': 400})
 
