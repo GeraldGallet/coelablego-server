@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Ajouter un sachet</h1>
+<div mat-dialog-content>
+	<p>Nom : <input matInput [(ngModel)]="data.name"></p>
+	<mat-list>
+		<mat-list-item *ngFor="let p of pieces">
+			<img matListAvatar src="{{ p.imgUrl }}">
+			<p matLine>Quantité : <input matInput [(ngModel)]="p.quantity"></p>
+		</mat-list-item>
+	</mat-list>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onSubmit()">Confirmer</button>
+	<button mat-button (click)="onCancel()">Annuler</button>
+</div>

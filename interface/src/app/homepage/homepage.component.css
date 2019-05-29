@@ -1,0 +1,51 @@
+#wrapper {
+  /* border: 1px solid black; */
+  width: 80%;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+#icon {
+  /* border: 1px solid green; */
+  width: 45%;
+  display: inline-block;
+  float:left;
+  font-size: 96px;
+  padding-left: 5%;
+  padding-top: 2%;
+}
+#lego-picture {
+  /* border: 1px solid red; */
+  width: 45%;
+  vertical-align: top;
+  padding-top: 3%;
+  padding-right: 3%;
+  display: inline-block;
+  float:right;
+}
+
+#material-icons{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+mat-icon.green-icon {
+  color: green;
+  font-size: 120px;
+}
+mat-icon.red-icon {
+  color: red;
+  font-size: 120px;
+}
+
+#div-under-button {
+  width: 45%;
+  /* border: 1px solid red; */
+  float: left;
+  padding-left : 5%
+}
+
+/* Button */
+button.fonctional-button{
+  margin-right: 8px;
+}

@@ -1,0 +1,26 @@
+img.picture{
+  /* border: 1px solid red; */
+  width: 50%;
+}
+
+img.picture2{
+  /* border: 1px solid red; */
+  width: 25%;
+  display: inline-block;
+  float: left;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+div.horiWrapper{
+  overflow: hidden;
+  position: relative;
+}
+
+mat-horizontal-stepper{
+  align: center;
+}
+
+div.bellow{
+  padding-top: 5%;
+}

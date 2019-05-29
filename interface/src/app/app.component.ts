@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, Subscription } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
+import { ParameterService } from './shared/services';
+
 
 @Component({
   selector: 'app-root',
@@ -7,34 +12,32 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Lego Sorter';
+  title = environment.appName;
+  logo = environment.assets.yncreaLogo;
 
-  serverData: JSON;
-  employeeData: JSON;
-  employee: JSON;
+  color: string;
+  colorSubject: Subscription;
 
-  constructor(private httpClient: HttpClient) {}
+  banner:string;
+  bannerSubject: Subscription;
+  bannerSubbed: string;
 
-  ngOnInit() {}
+  background = environment.assets.background;
+  constructor(private parameterService: ParameterService) {}
 
-  sayHi() {
-	this.httpClient.get('http://127.0.0.1:5002/').subscribe(data => {
-	  this.serverData = data as JSON;
-	  console.log(this.serverData);
-	})
-  }
+  ngOnInit() {
+  this.colorSubject = this.parameterService.colorCodeSubject.subscribe(
+    (data: string) => {
+      this.color = data;
+    }
+  );
+  this.parameterService.emitColorCodeSubject();
 
-  getAllEmployees() {
-	this.httpClient.get('http://127.0.0.1:5002/employees').subscribe(data => {
-	  this.employeeData = data as JSON;
-	  console.log(this.employeeData);
-	})
-  }
-
-  getEmployee() {
-	this.httpClient.get('http://127.0.0.1:5002/employees/1').subscribe(data => {
-	  this.employee = data as JSON;
-	  console.log(this.employee);
-	})
+  this.bannerSubject = this.parameterService.bannerSubject.subscribe(
+    (data: string)=> {
+      this.banner = data;
+    }
+  );
+  this.parameterService.emitBanner();
   }
 }

@@ -1,0 +1,14 @@
+<div>
+  <h1>Thème : </h1>
+  <mat-form-field>
+      <mat-select placeholder="Couleur" [formControl]="colorControl" [(value)]="colorSelect" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let i of colors" value="{{i}}">
+          {{i}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="colorControl.hasError('required')">Choisissez une couleur valide</mat-error>
+  </mat-form-field>
+  <button mat-raised-button class="fonctional-button" color="primary" (click)="themeButton()">Sauvegarder</button>
+</div>
+<br /><br /><br /><br /><br /><br />
